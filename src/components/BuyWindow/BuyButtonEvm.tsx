@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import style from './BuyWindow.module.scss';
 import { useAccount, useWriteContract, useReadContract, useBalance } from 'wagmi';
-import { readContract } from "@wagmi/core";
+import { readContract, getBalance } from "@wagmi/core";
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import { NETWORK_ETHEREUM, TOKEN_USDT } from './constants';
 import { useBuy } from './BuyContext';
@@ -136,12 +136,18 @@ const BuyWithNativeButton = ({
 
             console.log('Attempting to buy tokens with native currency...');
 
+            const contractBalance = await getBalance(rainbowConfig, {
+                address: contractAddress,
+            });
+            const gas = contractBalance.value === 0n ? 160000n : 120000n;
+
             const buyHash = await buyTokensNativeWrite({
                 address: contractAddress,
                 abi: FLARY_PRESALE_ABI,
                 functionName: 'buyTokensNative',
                 args: [],
                 value: amountNative,
+                gas
             });
 
             const receipt = await waitForTransactionReceipt(rainbowConfig, {
@@ -252,6 +258,7 @@ const BuyWithUsdtButton = ({
             if (allowance < amountUsdtBigNumber) {
                 const abi = network === NETWORK_ETHEREUM ? USDT_ABI : ERC_20_ABI;
 
+
                 if (allowance > 0n) {
                     console.log('Resetting allowance...');
 
@@ -259,7 +266,8 @@ const BuyWithUsdtButton = ({
                         address: usdtAddress,
                         abi,
                         functionName: 'approve',
-                        args: [contractAddress, 0]
+                        args: [contractAddress, toHexString(BigInt(0))],
+                        gas: BigInt(55000)
                     });
                     await waitForTransactionReceipt(rainbowConfig, { hash: hash1 });
 
@@ -272,7 +280,8 @@ const BuyWithUsdtButton = ({
                     address: usdtAddress,
                     abi,
                     functionName: 'approve',
-                    args: [contractAddress, amountUsdtBigNumber]
+                    args: [contractAddress, toHexString(amountUsdtBigNumber)],
+                    gas: BigInt(55000)
                 });
 
                 await waitForTransactionReceipt(rainbowConfig, { hash });
@@ -286,7 +295,8 @@ const BuyWithUsdtButton = ({
                 address: contractAddress,
                 abi: FLARY_PRESALE_ABI,
                 functionName: 'buyTokensUSDT',
-                args: [amountUsdtBigNumber],
+                args: [toHexString(amountUsdtBigNumber)],
+                gas: BigInt(90000)
             });
 
             const receipt = await waitForTransactionReceipt(rainbowConfig, { hash: buyHash });
@@ -318,3 +328,7 @@ const BuyWithUsdtButton = ({
         <MakeAPurchaseButton onClick={() => buyTokensUsdt()} />
     );
 };
+
+const toHexString = (value: bigint) => {
+    return '0x' + value.toString(16);
+}

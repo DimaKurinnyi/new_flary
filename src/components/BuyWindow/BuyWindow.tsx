@@ -101,7 +101,9 @@ export const BuyWindow = () => {
     solBalance,
     solBalanceFiat,
     setLoading,
-    loading
+    loading,
+    setSolBalance,
+    setSolBalanceFiat
   } = useBuy();
 
   const { connection } = useConnection();
@@ -281,7 +283,7 @@ export const BuyWindow = () => {
   };
 
   //@ts-ignore
-  const handlerChangeNetwork = (arg, argImg, controlDrop = true) => {
+  const handlerChangeNetwork = async (arg, argImg, controlDrop = true) => {
     if (arg === NETWORK_ETHEREUM) {
       setToken(TOKEN_ETHEREUM);
       setTokenImage(ETH);
@@ -297,6 +299,24 @@ export const BuyWindow = () => {
       setTokenImage(SOL);
 
       console.log('solana', "settomf", solBalance, solBalanceFiat);
+
+      if (publicKey) {
+
+        const price = await getSolanaPrice();
+        console.log('price:', price);
+
+        const balanceLamports = await connection.getBalance(publicKey);
+        const balanceSol = balanceLamports / 1e9;
+        const balanceSolFiat = Number((balanceSol * price).toFixed(2));
+
+        console.log('balanceSol:', balanceSol);
+        console.log('balanceSolFiat:', balanceSolFiat);
+
+
+        setSolBalance(roundToDecimalsSmaller(balanceSol, 3));
+        setSolBalanceFiat(roundToDecimalsSmaller(balanceSolFiat, 2));
+      }
+
 
       setBalanceValue(solBalance);
       setBalanceValueFiat(solBalanceFiat);
@@ -547,3 +567,9 @@ const NetworkDropDownElement = ({ img, network, handlerChangeNetwork, name }) =>
     </div>
   );
 }
+
+const roundToDecimalsSmaller = (value: number, decimals: number) => {
+  const [integer, decimal] = value.toString().split('.');
+  if (!decimal) return value;
+  return Number(`${integer}.${decimal.slice(0, decimals)}`);
+};

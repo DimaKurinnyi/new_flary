@@ -22,9 +22,9 @@ function ConnectHeaderMenu() {
       className={isEvmConnected || isSolanaConnected ? style.connect_active : style.connect_button}
       onClick={ toggleDropdown }>
       {isSolanaConnected ? (
-        <SolanaConnectedButtonContent />
+        <SolanaConnectedButtonContent weight={600} size={20} />
       ) : isEvmConnected ? (
-        <EvmConnectedButtonContent />
+        <EvmConnectedButtonContent weight={600} size={20} />
       ) : (
         <NotConnectedButtonContent />
       )}
@@ -116,7 +116,7 @@ const DisconnectButton = (
 ) => {
   return (
     <div className={style.dis_button} onClick={disconnect}>
-      <p>Disconnect</p>
+      <p >Disconnect</p>
     </div>
   );
 };

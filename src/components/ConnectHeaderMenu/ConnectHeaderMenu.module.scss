@@ -40,8 +40,11 @@ gap: 15px;
     gap:10px;
 }
 .connect_btn{
-    font-size: 16px;
-    color: #fff;
+  font-size: 16px;
+  color: #fff;
+  &:hover{
+    color:var(--color-text-darkYellow)
+  }
 }
 .dis_button{
 font-size: 13px;
@@ -57,7 +60,7 @@ background: linear-gradient(90deg, #ff5748d9, #fe9452c9);
   }
 }
 .connect_active {
-    position: relative;
+  position: relative;
   border: 1px solid var(--color-text-darkYellow);
   display: flex;
   align-items: center;
@@ -74,9 +77,14 @@ background: linear-gradient(90deg, #ff5748d9, #fe9452c9);
   align-items: center;
   gap: 10px;
 }
+
 @media (max-width: 440px) {
-    .connect_btn{
-        font-size: 10px;
-        color: #fff;
+  .dis_button{
+    p{
+      font-size: 10px;
     }
+  }
+  .connect_btn{
+
+font-size: 10px;}
 }

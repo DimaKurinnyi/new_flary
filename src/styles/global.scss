@@ -50,3 +50,79 @@ a {
 .active {
   color: var(--color-text-yellow);
 }
+.wallet-adapter-modal-wrapper{
+  overflow: hidden;
+  border: 1px solid transparent;
+  background: linear-gradient(4deg, rgb(24, 22, 22), rgb(0, 0, 0)) padding-box, linear-gradient(rgb(99, 94, 94), #736c6c) border-box;
+  button{
+    margin-top: 10px;
+    padding: 8px;
+    z-index: 10;
+    right: 8px;
+    top:10px
+    
+  }
+  h1{
+    font-weight:700;
+    position: relative;
+    padding: 48px 48px 20px 48px;
+    margin-bottom: 20px;
+  }
+  h1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(/src/assets/bg-buy-window2.jpg);
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    z-index: -1;
+}
+}
+
+.wallet-adapter-modal-list {
+
+  width:70%;
+  .wallet-adapter-button{
+    background: linear-gradient(90deg, #fb7367, #fe9452);
+    justify-content: center;
+    border-radius:12px;
+    font-weight: 600;
+    &:hover{
+      scale: 1.05;
+      filter: none;
+      color:black;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .wallet-adapter-modal-container {
+    margin: 3rem;
+    
+}
+  .wallet-adapter-modal-wrapper{
+    h1{
+      font-size:18px
+    }
+    button{
+      width: fit-content;
+    }
+  }
+  .wallet-adapter-modal-list {
+    
+    .wallet-adapter-button{
+      font-size: 14px;
+      font-weight: 500;
+      &:hover{
+        scale: 1.05;
+        filter: none;
+        color:black;
+      }
+    }
+  }
+  }

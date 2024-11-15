@@ -21,10 +21,6 @@ const connectors = connectorsForWallets([
     groupName: 'ENV',
     wallets: [rainbowWallet, walletConnectWallet, rabbyWallet, metaMaskWallet]
   },
-  {
-    groupName: 'Solana',
-    wallets: [phantomWallet, coinbaseWallet]
-  },
 ], {
   appName: 'RainbowKit demo',
   projectId: projectId,

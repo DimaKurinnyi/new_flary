@@ -90,9 +90,9 @@ export const YouPayComponent = () => {
                     console.log('balanceSol:', balanceSol);
                     console.log('balanceSolFiat:', balanceSolFiat);
 
-                    setSolBalance(balanceSol);
-                    setSolBalanceFiat(balanceSolFiat);
-
+                    setSolBalance(roundToDecimalsSmaller(balanceSol, 3));
+                    console.log('2 setSolBalanceFiat', roundToDecimalsSmaller(balanceSolFiat, 2))
+                    setSolBalanceFiat(roundToDecimalsSmaller(balanceSolFiat, 2));
                 } catch (error) {
                     console.error("Failed to fetch balance:", error);
                 }
@@ -113,9 +113,9 @@ export const YouPayComponent = () => {
 
                     console.log('accountInfo:', accountInfo);
 
-                    setSolUsdcBalance(accountInfo.value.uiAmount);
+                    setSolUsdcBalance(roundToDecimalsSmaller(accountInfo.value.uiAmount ?? 0, 2));
                 } catch {
-                    setSolBalanceFiat(0);
+                    setSolUsdcBalance(0);
                 }
             } else {
                 setSolBalance(0);
@@ -124,7 +124,7 @@ export const YouPayComponent = () => {
         };
 
         fetchBalance();
-    }, [connection, publicKey]);
+    }, [connection, publicKey, network]);
 
 
     useEffect(() => {
@@ -196,14 +196,14 @@ export const YouPayComponent = () => {
     });
 
     const bnbBNBValue = Math.floor(Number(bnbBNB?.formatted) * 1000) / 1000;
-    const bnbBNBValueFiat = (bnbBNBValue * networkPrices[NETWORK_BSC]).toFixed(1);
+    const bnbBNBValueFiat = (bnbBNBValue * networkPrices[NETWORK_BSC]).toFixed(2);
 
     const { data: bnbUsdt } = useBalance({
         address: address,
         //@ts-ignore
         token: BSC_USDT_ADDRESS,
     });
-    const bnbUsdtValue = Number(bnbUsdt?.formatted ?? 0);
+    const bnbUsdtValue = roundToDecimalsSmaller(Number(bnbUsdt?.formatted ?? 0), 2);
 
 
     const { data: ethEth } = useBalance({
@@ -211,7 +211,7 @@ export const YouPayComponent = () => {
     });
     const ethEthValue = Math.floor(Number(ethEth?.formatted) * 1000) / 1000;
 
-    const ethEthValueFiat = (ethEthValue * networkPrices[NETWORK_ETHEREUM]).toFixed(1);
+    const ethEthValueFiat = (ethEthValue * networkPrices[NETWORK_ETHEREUM]).toFixed(2);
 
 
     const { data: ethUsdt } = useBalance({
@@ -219,7 +219,7 @@ export const YouPayComponent = () => {
         //@ts-ignore
         token: ETH_USDT_ADDRESS
     });
-    const ethUsdtValue = Number(ethUsdt?.formatted);
+    const ethUsdtValue = roundToDecimalsSmaller(Number(ethUsdt?.formatted), 2);
 
     console.log('ethUsdtValue:', ethUsdtValue);
     console.log('bnbUsdtValue:', bnbUsdtValue);
@@ -243,31 +243,49 @@ export const YouPayComponent = () => {
     const setMaxAcceptableValue = async () => {
         if (network === NETWORK_ETHEREUM && token === TOKEN_ETHEREUM) {
             const gasPriceInNativeCoin = await getGasPriceInNativeCoin(providerEthereum);
-            const balanceWithoutFee = balanceValue - gasPriceInNativeCoin;
+            const balanceWithoutFee = roundToDecimalsSmaller(balanceValue - gasPriceInNativeCoin, 4);
             const availableBalance = Math.max(balanceWithoutFee, 0);
+
+            const inUsdt = availableBalance * networkPrices[NETWORK_ETHEREUM];
+            console.log('inUsdt:', inUsdt);
+
+            setInputAmountInUsd(inUsdt);
             setTokensFromAmount(availableBalance);
 
             const tokensToAmountNew = availableBalance * networkPrices[NETWORK_ETHEREUM] / tokenPrice;
-            setTokensToAmount(tokensToAmountNew);
+            setTokensToAmount(roundToDecimalsSmaller(tokensToAmountNew, 4));
         } else if (network === NETWORK_BSC && token === TOKEN_BNB) {
             const gasPriceInNativeCoin = await getGasPriceInNativeCoin(providerBSC);
-            const balanceWithoutFee = balanceValue - gasPriceInNativeCoin;
+            const balanceWithoutFee = roundToDecimalsSmaller(balanceValue - gasPriceInNativeCoin, 4);
             const availableBalance = Math.max(balanceWithoutFee, 0);
             setTokensFromAmount(availableBalance);
 
+            const inUsdt = availableBalance * networkPrices[NETWORK_BSC];
+            setInputAmountInUsd(inUsdt);
+
             const tokensToAmountNew = availableBalance * networkPrices[NETWORK_BSC] / tokenPrice;
-            setTokensToAmount(tokensToAmountNew);
+            setTokensToAmount(roundToDecimalsSmaller(tokensToAmountNew, 4));
         } else if (network === NETWORK_SOLANA && token === TOKEN_SOL) {
-            const feeInSolana = 0.00001;
-            const balanceWithoutFee = solBalance - feeInSolana;
+            const feeInSolana = 0.002;
+            const balanceWithoutFee = roundToDecimalsSmaller(solBalance - feeInSolana, 4);
             const availableBalance = Math.max(balanceWithoutFee, 0);
+
+            const inUsdt = availableBalance * networkPrices[NETWORK_SOLANA];
+            setInputAmountInUsd(inUsdt);
+
             setTokensFromAmount(availableBalance);
+
+            const tokensToAmountNew = availableBalance * networkPrices[NETWORK_SOLANA] / tokenPrice;
+            setTokensToAmount(roundToDecimalsSmaller(tokensToAmountNew, 4));
         }
         else {
-            setTokensFromAmount(balanceValue);
+            const resultBalance = roundToDecimalsSmaller(balanceValue, 4);
+            setInputAmountInUsd(resultBalance);
+            setTokensFromAmount(resultBalance);
             const tokensToAmountNew =
-                (balanceValue * (isBaseCoinSelected() ? getBaseCoinPrice() : 1)) / tokenPrice;
-            setTokensToAmount(tokensToAmountNew);
+                roundToDecimalsSmaller((resultBalance) / tokenPrice, 4);
+
+            setTokensToAmount(roundToDecimalsSmaller(tokensToAmountNew, 4));
         }
     };
 
@@ -352,7 +370,7 @@ export const YouPayComponent = () => {
 
                         setInputAmountInUsd(valInUsdt);
 
-                        setTokensToAmount(valInUsdt / tokenPrice);
+                        setTokensToAmount(roundToDecimalsSmaller(valInUsdt / tokenPrice, 4));
                     }}
                 />
                 {mounted
@@ -375,4 +393,10 @@ const getGasPriceInNativeCoin = async (provider) => {
     const gasPriceInNativeCoin = Number(formatEther(gasPrice * gasUsage));
 
     return gasPriceInNativeCoin;
+};
+
+const roundToDecimalsSmaller = (value: number, decimals: number) => {
+    const [integer, decimal] = value.toString().split('.');
+    if (!decimal) return value;
+    return Number(`${integer}.${decimal.slice(0, decimals)}`);
 };
