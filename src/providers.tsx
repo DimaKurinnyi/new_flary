@@ -3,11 +3,11 @@ import React, { ReactNode } from 'react';
 import { connectorsForWallets } from '@rainbow-me/rainbowkit';
 import {
   metaMaskWallet,
-  phantomWallet,
+ 
   rabbyWallet,
   rainbowWallet,
   walletConnectWallet,
-  coinbaseWallet
+ 
 } from '@rainbow-me/rainbowkit/wallets';
 // import {configureChain,createConfig, WagmiConfig} from 'wagmi'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
