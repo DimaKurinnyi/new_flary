@@ -1,0 +1,171 @@
+.Roadmap {
+  // background-image: url(../../assets/AdobeStock.png);
+  // background-repeat: no-repeat;
+  // background-position: center;
+  // background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 200px;
+}
+.hidden {
+  margin-top: 200px;
+  overflow: hidden;
+}
+
+.littleTittle {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+.infoData {
+  display: flex;
+  align-items: center;
+}
+
+.dotGreen {
+  background: var(--color-text-darkGreen);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.infoLine {
+  margin-left: 8px;
+}
+
+.dotYellow {
+  background: var(--color-text-darkYellow);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.dotWhite {
+  background: var(--color-text-darkWhite);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.info {
+  margin-left: 10px;
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.timeLine {
+  display: flex;
+  position: relative;
+}
+.tileLineBlok {
+  margin: 0 70px;
+}
+.line {
+  top: 7px;
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background-color: rgba(83, 81, 81, 0.5);
+}
+
+.lineDotGreen {
+  background: var(--color-text-darkGreen);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  filter: blur(3.5px);
+}
+.lineDotYellow {
+  background: var(--color-text-darkYellow);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  filter: blur(3.5px);
+}
+.lineDotWhite {
+  background: var(--color-text-darkWhite);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  filter: blur(3.5px);
+}
+.lineTittle {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 35px;
+  margin: 20px 0;
+}
+
+@media (max-width: 1150px) {
+  .tileLineBlok {
+    margin: 0 25px 0 15px;
+  }
+}
+@media (max-width: 940px) {
+  .timeLine {
+    width: 700px;
+    overflow-x: scroll;
+    padding: 10px 15px 10px 25px;
+    gap: 10px;
+  }
+  .tileLineBlok {
+    background: -webkit-linear-gradient(var(--color-bg), var(--color-bg)) padding-box,
+      linear-gradient(to bottom, #fe5e49, var(--color-bg)) border-box;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    margin-bottom: 24px;
+    min-width: 400px;
+    margin-left: 0;
+    margin-right: 35px;
+    padding: 0 20px;
+  }
+  .lineDotGreen,
+  .lineDotYellow,
+  .lineDotWhite {
+    display: none;
+  }
+  .line {
+    display: none;
+  }
+}
+@media (max-width: 710px) {
+  .timeLine {
+    padding: 10px 15px 10px 20px;
+    margin-left: 30px;
+  }
+  .Roadmap {
+    margin-bottom: 100px;
+    overflow: hidden;
+  }
+  .timeLine {
+    width: 420px;
+  }
+  .info {
+    font-size: 18px;
+  }
+  .littleTittle {
+    gap: 20px;
+  }
+  .tileLineBlok {
+    //margin-right: 0;
+    min-width: 340px;
+    max-width: 350px;
+  }
+  .tileLineBlok:last-child {
+    margin-left: 20px;
+  }
+}
+@media (max-width: 390px) {
+  .info {
+    font-size: 16px;
+  }
+}
+@media (max-width: 380px) {
+  .tileLineBlok {
+    //margin-right: 0;
+    min-width: 330px;
+  }
+  .timeLine {
+    margin-left: 15px;
+  }
+}

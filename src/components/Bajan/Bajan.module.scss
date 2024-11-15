@@ -1,0 +1,42 @@
+.bajan {
+  margin: 55px 180px;
+}
+.bajan_section {
+  margin-bottom: 45px;
+}
+.tittle {
+  display: flex;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #ffffff3e;
+  padding-bottom: 5px;
+  p {
+    cursor: pointer;
+  }
+}
+.bajan_info {
+  transition-duration: 500ms;
+  text-align: start;
+  li {
+    margin-top: 25px;
+  }
+  span {
+    font-weight: 600;
+  }
+}
+@media (max-width: 768px) {
+  .bajan {
+    margin: 35px 10px;
+  }
+  .tittle {
+    h2 {
+      font-size: 18px;
+    }
+  }
+  .bajan_info {
+    li {
+      margin-top:15px;
+      font-size: 13px;
+    }
+  }
+}

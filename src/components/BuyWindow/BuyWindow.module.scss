@@ -1,0 +1,265 @@
+.BuyWindow {
+  overflow: hidden;
+  //margin:25px;
+  position: relative;
+  border: 2px solid transparent;
+  padding-bottom: 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: linear-gradient(4deg, rgb(24, 22, 22), rgb(0, 0, 0)) padding-box,
+    linear-gradient(rgb(99, 94, 94), #736c6c) border-box;
+  // backdrop-filter: blur(35px);
+  // -webkit-backdrop-filter: blur(15px);
+  .bg {
+    display: flex;
+    justify-content: center;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    width: 100%;
+    text-align: center;
+    background-image: url(../../assets/hell_background_hd_8k_wallpaper_stock_photographic_853645_63610.avif);
+
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    margin-bottom: 10px;
+  }
+  h1 {
+    width: fit-content;
+    background: rgb(24, 22, 22, 0.7);
+    border-radius: 15px;
+    padding: 7px 15px;
+    color: rgb(212, 209, 209);
+  }
+  p {
+    font-weight: 600;
+  }
+  span {
+    color: var(--color-text-darkYellow);
+  }
+}
+.BuyWindowBlur {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  background: var(--color-text-yellow);
+  z-index: -1;
+  right: -20%;
+  top: 20%;
+  filter: blur(90px);
+}
+.button_group {
+  width: 90%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  // align-items: center;
+  .button {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--color-text-darkYellow);
+    padding: 5px 15px;
+    border-radius: 10px;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+.balanceValue {
+  font-weight: 300;
+  font-size: 14px;
+}
+.down_button {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
+  .button {
+    min-width: 188px;
+    min-height: 54px;
+    margin: 15px 12px 0 12px;
+  }
+}
+.max_input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .max {
+    margin-right: 12px;
+    font-weight: 400;
+    font-size: 12px;
+    padding: 2px;
+    border-radius: 4px;
+    background: #ff5748;
+    cursor: pointer;
+  }
+}
+
+.block_input {
+  //border: 1px solid #fff;
+  background: rgba(26, 22, 61, 0.48);
+  //border: 2px solid var(--color-text-yellow);
+  border-radius: 15px;
+  position: relative;
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input {
+    border: none;
+    z-index: 0;
+    padding-left: 15px;
+    line-height: 55px;
+    position: relative;
+  }
+}
+.button_tittle {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  span {
+    font-size: 10px;
+  }
+}
+.drop_network {
+  width: 100.5%;
+  z-index: 11;
+  position: absolute;
+  top: 50px;
+  left: -1px;
+  border: 1px solid var(--color-text-darkYellow);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background: #000;
+  overflow: hidden;
+}
+.drop_token {
+  width: 101%;
+  z-index: 11;
+  position: absolute;
+  top: 52px;
+  left: -1px;
+  border: 1px solid var(--color-text-darkYellow);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background: #000;
+  overflow: hidden;
+}
+.button_drop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  cursor: pointer;
+  padding: 15px 10px 10px 15px;
+  &:hover {
+    background: #fff;
+    color: #000;
+  }
+}
+.button_drop_left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.button_drop_right {
+  text-align: end;
+}
+.labelLine {
+  z-index: 1;
+  top: -22px;
+  left: -15px;
+  position: absolute;
+  font-size: 12px;
+  color: var(--color-text-yellow);
+  padding: 0 10px;
+  margin: 0 20px;
+}
+.pay_button {
+  width: 90%;
+  text-align: center;
+  background: linear-gradient(90deg, #ff5748, #fe9452);
+  cursor: pointer;
+  color: #000;
+  border-radius: 16px;
+  padding: 12px;
+  font-weight: 700;
+  line-height: 26px;
+  transition: 0.5s;
+  &:hover {
+    filter: brightness(120%);
+  }
+}
+.ConnectButton {
+  font-weight: 700;
+  line-height: 26px;
+  font-size: 20px;
+}
+
+@media (max-width: 1024px) {
+  .input_container {
+    margin-bottom: 25px;
+
+    align-items: center;
+    position: relative;
+
+    p {
+      font-size: 9px;
+    }
+  }
+}
+@media (max-width: 970px) {
+  .inputs {
+    width: auto;
+  }
+
+@media (max-width: 500px) {
+  .block_input {
+ 
+width: 100%;
+  
+  }
+ 
+}
+  .down_button {
+  display: flex;
+  gap: 35px;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  .button {
+   
+    min-height: 54px;
+    margin: 15px 12px 0 12px;
+  }
+}
+  .button_group {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    // .button {
+    //   width: 100%;
+    // }
+  }
+  .inputs {
+    display: block;
+  }
+}
+@media (max-width: 440px) {
+}

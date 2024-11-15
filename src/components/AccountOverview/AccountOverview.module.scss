@@ -1,0 +1,107 @@
+.AccountOverview_open {
+  position: fixed;
+  width: 30%;
+  height: 100vh;
+  cursor: default;
+  top: 0;
+  right: 0;
+  display: flex;
+
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  transition-duration: 300ms;
+}
+.AccountOverview_close {
+  position: fixed;
+  width: 30%;
+  height: 100vh;
+  cursor: default;
+  top: 0;
+  right: -100%;
+
+  display: flex;
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  transition-duration: 00ms;
+}
+.arrowClose {
+  padding-top: 50px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  cursor: pointer;
+  height: 100%;
+  background:rgb(21, 21, 31);
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: rgba(44, 44, 44, 0.9);
+    transform: translateX(5px);
+  }
+}
+.contentOverview {
+  z-index: 1111;
+  width: 100%;
+  padding: 25px 10px;
+  height: 100%;
+  border-left: 1px solid var(--color-text-darkYellow);
+  background: rgb(21, 21, 31);
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+}
+.headerOverview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.headerOverviewLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.avatarOverview {
+  padding: 4px;
+  width: 35px;
+  height: 35px;
+  background-color: rgba(44, 44, 44);
+  border-radius: 50%;
+}
+.price {
+  margin-top: 30px;
+  margin-left: 20px;
+}
+.priceToken {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: rgb(155, 155, 155);
+  font-weight: 300;
+  font-size: 12px;
+}
+.overviewBlocks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  gap: 15px;
+}
+.overviewBlock {
+  border-radius: 15px;
+  min-width: 350px;
+  min-height: 150px;
+  padding: 20px;
+  background: linear-gradient(90deg, #ffa857d8, #ffd875d8);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  p {
+    text-align: center;
+    font-size: 25px;
+    margin-top: 30px;
+  }
+  span {
+    font-weight: 300;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,33 @@
+.Tiker {
+  h1 {
+
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 100px;
+  }
+}
+.ticker_container {
+  display: flex;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent,black ,transparent);
+}
+.ticker {
+  display: flex;
+  gap: 56px;
+  padding-right:56px ;
+  flex: none;
+  img {
+    height: 30px;
+    width: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .ticker {
+  
+  img {
+    height: 18px;
+    width: auto;
+  }
+}
+}

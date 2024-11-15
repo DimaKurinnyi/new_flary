@@ -1,0 +1,130 @@
+.Tekenomics {
+  position: relative;
+  margin-bottom: 150px;
+  & p {
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  & img {
+    position: absolute;
+    top: 280px;
+    left: 187px;
+    transform: rotate3d(4, -3, 10, 0deg);
+    opacity: 0.7;
+    z-index: -1;
+    display: block;
+    width: 66%;
+    height: auto;
+  }
+}
+.tekenomicsInfo {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.description {
+  width: 45%;
+}
+.data {
+  line-height: 32px;
+  font-weight: 400;
+  font-size: 16px;
+  margin-left: 85px;
+}
+
+.titleSchedule {
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  position: relative;
+}
+.titleScheduleBlur{
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  background: var(--color-text-yellow);
+  z-index: -1;
+  left: -25%;
+  top: 40%;
+  filter: blur(90px);
+}
+.infoData {
+  display: flex;
+  align-items: center;
+}
+.dot {
+  background: rgba(112, 41, 209);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.info {
+  margin-left: 16px;
+  font-size: 21px;
+}
+.schedule {
+  width: 50%;
+}
+@media (max-width: 900px) {
+  .titleSchedule {
+    font-size: 26px;
+  }
+  .info {
+    font-size: 16px;
+  }
+  .Tekenomics {
+    & img {
+      top: 248px;
+      left: 123px;
+    }
+  }
+}
+
+@media (max-width: 770px) {
+  .Tekenomics {
+    & img {
+      top: 235px;
+      left: 96px;
+    }
+  }
+}
+@media (max-width: 640px) {
+  .Tekenomics {
+    margin-bottom: 50px;
+    & p {
+      font-size: 38px;
+    }
+    & img {
+      display: none;
+    }
+  }
+  .info {
+    margin-left: 8px;
+  }
+  .tekenomicsInfo {
+    margin-top: 30px;
+    gap: 30px;
+    flex-direction: column;
+  }
+  .description {
+    width: 100%;
+  }
+  .schedule {
+    width: 90%;
+  }
+  .Tekenomics {
+    & img {
+      top: 235px;
+      left: 96px;
+    }
+  }
+ 
+  .data {
+    font-size: 13px;
+    margin-left: 20px;
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,39 @@
+.ContactInfo {
+  overflow: hidden;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+.contentBlockWrap {
+  background-image: linear-gradient(90deg, #ffa957, #ffd975);
+  border-radius: 15px;
+  padding: 1px;
+  width: 100%;
+  box-shadow: -2px 2px 5px #ffa957;
+}
+.contentBloc {
+  background: #000;
+  padding: 15px 15px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  span {
+    color: grey;
+  }
+}
+.socialLinks {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 13px;
+}
+@media (max-width: 768px) {
+  .ContactInfo {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+}

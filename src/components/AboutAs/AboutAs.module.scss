@@ -1,0 +1,225 @@
+.AboutAs {
+  // width:100vh;
+  margin-top: 150px;
+  margin-bottom: 50px;
+
+  // overflow: hidden;
+}
+.block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 150px;
+}
+.containerBlikDark {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  background: #117b52;
+  z-index: 1;
+  right: -20%;
+  top: 20%;
+  filter: blur(30px);
+}
+.containerBlik {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  background: var(--color-text-yellow);
+  z-index: 1;
+  right: -30%;
+  top: 0%;
+  filter: blur(90px);
+}
+
+.netBackground {
+  // background: radial-gradient(70.71% 70.71% at 50% 50%, transparent 0, rgba(0, 0, 0, 0.5) 79%),
+  //   url(../../assets/bg-net.png), transparent 0 0/100% 100% no-repeat;
+  // background-image: url(../../assets/bg-net.png);
+  // background-repeat: no-repeat;
+  // background-position:center;
+  // background-size:cover;
+  position: relative;
+
+  padding-top: 28px;
+  padding-bottom: 30px;
+}
+.netBackground::before {
+  // background: radial-gradient(70.71% 70.71% at 50% 50%, transparent 0, rgba(0, 0, 0, 0.5) 79%),
+  //   url(../../assets/bg-net.png), transparent 0 0/100% 100% no-repeat;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  z-index: -1;
+  background-image: url(../../assets/bg-net.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  padding-top: 28px;
+  padding-bottom: 30px;
+}
+
+.content {
+  width: 45%;
+  position: relative;
+}
+.contentTitle {
+  background-image: linear-gradient(90deg, #ffa957, #ffd975);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  line-height: 58px;
+  font-size: 48px;
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+.contentTitleLittle {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 35px;
+  margin-bottom: 24px;
+  color: var(--color-text-yellow);
+  position: relative;
+}
+.contentTitleLittleBlur {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  background: #d05c48;
+  z-index: -1;
+  left: -30%;
+  top: 20%;
+  filter: blur(90px);
+}
+.contentTextBlur {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  background: #ca893f;
+  z-index: -1;
+  right: -30%;
+  top: 20%;
+  filter: blur(90px);
+}
+.contentTitleSolution {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 35px;
+  margin-bottom: 24px;
+  color: var(--color-text-darkYellow);
+}
+.contentText {
+  line-height: 23px;
+}
+.contentHelperImg {
+  width: 45%;
+  & img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+.contentHelper {
+  width: 45%;
+  position: relative;
+  & .numSpan {
+    font-weight: 500;
+    font-size: 85px;
+    line-height: 72px;
+    position: absolute;
+    left: 0;
+    top: 13px;
+    z-index: -1;
+    background: -webkit-linear-gradient(270deg, #fe5e49, var(--color-bg));
+    -webkit-text-fill-color: var(--color-bg);
+    -webkit-background-clip: text;
+    -webkit-text-stroke: 4px transparent;
+  }
+
+  & h3 {
+    padding-left: 25px;
+    font-size: 40px;
+    line-height: 58px;
+    margin-top: 55px;
+    & .textSpan {
+      color: var(--color-text-yellow);
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .AboutAs {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .contentHelper {
+    & h3 {
+      font-size: 30px;
+    }
+  }
+  .bgBlik {
+    top: -180px;
+    left: 40px;
+  }
+}
+
+@media (max-width: 750px) {
+  .AboutAs {
+    // width:100vh;
+    margin-top: 250px;
+    margin-bottom: 50px;
+  }
+  .contentTitle {
+    font-size: 38px;
+  }
+  .content {
+    width: 100%;
+  }
+  .contentHelperImg {
+    margin-top: 60px;
+    width: 100%;
+    & img {
+      animation: none;
+    }
+  }
+  .contentHelper {
+    width: 100%;
+    & h3 {
+      margin-right: 20px;
+      font-size: 30px;
+      margin-bottom: 40px;
+    }
+  }
+  .block:nth-child(1) {
+    flex-direction: column-reverse;
+    margin-bottom: 80px;
+  }
+
+  .block {
+    flex-direction: column;
+  }
+  .netBackground {
+    overflow: hidden;
+  }
+  .contentText {
+    & p {
+      font-size: 14px;
+    }
+  }
+}
+@media (max-width: 440px) {
+  .contentTitleLittleBlur {
+    display: none;
+  }
+  .AboutAs {
+    // width:100vh;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+}
