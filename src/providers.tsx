@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 import { connectorsForWallets } from '@rainbow-me/rainbowkit';
 import {
   metaMaskWallet,
- 
+ coinbaseWallet,
   rabbyWallet,
   rainbowWallet,
   walletConnectWallet,
@@ -19,7 +19,7 @@ const projectId = '95b12f1450eb1b99e25683fb739ccb3e';
 const connectors = connectorsForWallets([
   {
     groupName: 'ENV',
-    wallets: [rainbowWallet, walletConnectWallet, rabbyWallet, metaMaskWallet]
+    wallets: [rainbowWallet, walletConnectWallet, rabbyWallet, metaMaskWallet,coinbaseWallet]
   },
 ], {
   appName: 'RainbowKit demo',
