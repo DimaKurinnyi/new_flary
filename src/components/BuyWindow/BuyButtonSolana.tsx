@@ -38,7 +38,7 @@ const ConnectSolanaButton = () => {
     return (
         <div
             className={style.pay_button}
-           
+            
             onClick={() => setVisible(true)}>
             Connect Solana Wallet To Buy FLFI
         </div>

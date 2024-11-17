@@ -182,6 +182,7 @@ export const YouPayComponent = () => {
         //@ts-ignore
         balanceFiat
     ) => {
+        setInputAmountInUsd(0);
         setDropNetwork(!dropToken);
         setToken(token);
         setTokenImage(tokenImg);

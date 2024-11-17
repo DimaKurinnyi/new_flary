@@ -23,5 +23,8 @@ export const getSolanaBoughtTokensFromContract = async (publicKey, connection) =
     //@ts-ignore
     const userSaleStateInitial = await saleProgram.account.userSaleState.fetch(userSaleStateAddress);
 
-    return userSaleStateInitial.tokenAmount.toNumber() / 10 ** 9;
+    // this is an error between solana and ethereum, prices
+    // solana price of 0.7 is eth price of 0.07
+
+    return userSaleStateInitial.tokenAmount.toNumber() / 10 ** 8;
 };

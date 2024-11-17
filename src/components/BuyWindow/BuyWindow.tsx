@@ -103,12 +103,17 @@ export const BuyWindow = () => {
     setLoading,
     loading,
     setSolBalance,
-    setSolBalanceFiat
+    setSolBalanceFiat,
+    setInputAmountInUsd
   } = useBuy();
 
   const { connection } = useConnection();
 
   const { switchChain } = useSwitchChain();
+
+  useEffect(() => {
+    updateTokenHoldings();
+  }, [isSolanaConnected, publicKey]);
 
   useEffect(() => {
     const checkNetwork = async () => {
@@ -284,6 +289,7 @@ export const BuyWindow = () => {
 
   //@ts-ignore
   const handlerChangeNetwork = async (arg, argImg, controlDrop = true) => {
+    setInputAmountInUsd(0);
     if (arg === NETWORK_ETHEREUM) {
       setToken(TOKEN_ETHEREUM);
       setTokenImage(ETH);
@@ -322,6 +328,7 @@ export const BuyWindow = () => {
       setBalanceValueFiat(solBalanceFiat);
     }
 
+
     if (controlDrop) {
       setDropNetwork(!dropNetwork);
     }
@@ -330,6 +337,8 @@ export const BuyWindow = () => {
     setNetworkImg(argImg);
     setTokensFromAmount('');
     setTokensToAmount('');
+
+    await updateTokenHoldings();
   };
 
   const initializeSolanaPrice = async () => {
@@ -381,6 +390,8 @@ export const BuyWindow = () => {
   };
 
   const updateTokenHoldings = async () => {
+    console.log('updateTokenHoldings');
+
     let sum = 0;
     if (status === 'connected') {
       const boughtTokensEth = await getBoughtTokens(NETWORK_ETHEREUM, address);
@@ -388,10 +399,16 @@ export const BuyWindow = () => {
       sum = boughtTokensEth + boughtTokensBsc;
     }
 
+    console.log('isSolanaConnected', isSolanaConnected);
+
     if (isSolanaConnected) {
       const boughtTokensSol = await getSolanaBoughtTokens();
+      console.log('boughtTokensSol', boughtTokensSol);
+
       sum += boughtTokensSol;
     }
+
+    console.log('sum', sum);
 
     setTokenHoldings(sum.toFixed(2));
   };
