@@ -258,7 +258,6 @@ const BuyWithUsdtButton = ({
             if (allowance < amountUsdtBigNumber) {
                 const abi = network === NETWORK_ETHEREUM ? USDT_ABI : ERC_20_ABI;
 
-
                 if (allowance > 0n) {
                     console.log('Resetting allowance...');
 
@@ -269,6 +268,7 @@ const BuyWithUsdtButton = ({
                         args: [contractAddress, toHexString(BigInt(0))],
                         gas: BigInt(55000)
                     });
+
                     await waitForTransactionReceipt(rainbowConfig, { hash: hash1 });
 
                     console.log('Allowance reset');
@@ -284,19 +284,22 @@ const BuyWithUsdtButton = ({
                     gas: BigInt(55000)
                 });
 
-                await waitForTransactionReceipt(rainbowConfig, { hash });
+                console.log('Waiting for hash', hash);
+
+                await waitForTransactionReceipt(rainbowConfig, { hash: hash });
 
                 console.log('Approved');
             }
 
             console.log('Buying tokens...');
 
+            const gas = network === NETWORK_ETHEREUM ? undefined : BigInt(90000);
             const buyHash = await buyTokensUsdtWrite({
                 address: contractAddress,
                 abi: FLARY_PRESALE_ABI,
                 functionName: 'buyTokensUSDT',
                 args: [toHexString(amountUsdtBigNumber)],
-                gas: BigInt(90000)
+                gas
             });
 
             const receipt = await waitForTransactionReceipt(rainbowConfig, { hash: buyHash });
@@ -307,7 +310,11 @@ const BuyWithUsdtButton = ({
                 try {
                     await fetch("https://back.flary.finance/api/user/boughtTokens", {
                         method: "POST",
-                        body: JSON.stringify({ address, amount: Number(tokensToAmount), chain: receipt.chainId === 1 ? "eth" : "bsc" })
+                        body: JSON.stringify({
+                            address,
+                            amount: Number(tokensToAmount),
+                            chain: network === NETWORK_ETHEREUM ? "eth" : "bsc"
+                        })
                     });
                 } catch { }
 
@@ -331,4 +338,4 @@ const BuyWithUsdtButton = ({
 
 const toHexString = (value: bigint) => {
     return '0x' + value.toString(16);
-}
+};
