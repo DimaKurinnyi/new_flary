@@ -18,8 +18,9 @@ const projectId = '95b12f1450eb1b99e25683fb739ccb3e';
 const connectors = connectorsForWallets([
   {
     groupName: 'EVN',
-    wallets: [rainbowWallet, walletConnectWallet, rabbyWallet, metaMaskWallet,coinbaseWallet]
-  }
+    wallets: [rainbowWallet, walletConnectWallet, rabbyWallet, metaMaskWallet, coinbaseWallet]
+  },
+  
 ], {
   appName: 'RainbowKit demo',
   projectId: projectId,

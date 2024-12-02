@@ -14,9 +14,21 @@ import '@solana/wallet-adapter-react-ui/styles.css';
 function App() {
   const { isConnected, address } = useAccount();
 
+
+  useEffect(() => {
+    // Parse the URL to get the ref value
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get('ref');
+
+    if (ref) {
+      // Save to localStorage
+      localStorage.setItem('ref', ref);
+    }
+  }, []);
+
   useEffect(() => {
     const handleAuth = async () => {
-      const referrerCode = new URLSearchParams(window.location.search).get('ref');
+      const referrerCode = new URLSearchParams(window.location.search).get('ref') ?? localStorage.getItem('ref');
       console.log(referrerCode);
 
       await fetch("https://back.flary.finance/api/user/registerUser", {

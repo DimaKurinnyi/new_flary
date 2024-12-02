@@ -20,7 +20,7 @@ function ConnectHeaderMenu() {
   return (
     <div
       className={isEvmConnected || isSolanaConnected ? style.connect_active : style.connect_button}
-      onClick={ toggleDropdown }>
+      onClick={toggleDropdown}>
       {isSolanaConnected ? (
         <SolanaConnectedButtonContent weight={600} size={20} />
       ) : isEvmConnected ? (
@@ -42,7 +42,7 @@ function ConnectHeaderMenu() {
 export default ConnectHeaderMenu;
 
 const NotConnectedButtonContent = () => {
-  
+
   return (
     <>
       <div>
@@ -84,7 +84,7 @@ const SolanaConnectedButtonContent = ({ weight, size }: { weight: number; size: 
   useEffect(() => {
     const registerSolanaAddress = async () => {
       try {
-        const referrerCode = new URLSearchParams(window.location.search).get('ref');
+        const referrerCode = new URLSearchParams(window.location.search).get('ref') ?? localStorage.getItem('ref');;
 
         await fetch('https://back.flary.finance/api/user/registerUser', {
           method: 'POST',

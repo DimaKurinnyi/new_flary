@@ -13,8 +13,9 @@ import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 
 import { ethers, formatUnits } from 'ethers';
 import { useSwitchChain } from 'wagmi';
-import { } from 'wagmi/connectors';
+import {} from 'wagmi/connectors';
 import { config } from '../../config';
+import { useBuy } from './BuyContext';
 import {
   NETWORK_BSC,
   NETWORK_ETHEREUM,
@@ -39,22 +40,19 @@ import {
 } from './constants';
 import { Error } from './Error';
 import { ErrorTransaction } from './ErrorTransaction/ErrorTransaction';
-import { Loader } from './Loader/Loader';
-import { PopupNetwork } from './PopapNetwork/PopupNetwork';
-import { Successful } from './Successful/Successful';
-import { getSolanaPrice } from './solana/get-solana-price';
-import { useBuy } from './BuyContext';
 import { getContract } from './evm/get-contract';
 import { getEvmNativeCurrencyPrice } from './evm/get-evm-native-coin-price';
+import { Loader } from './Loader/Loader';
+import { PopupNetwork } from './PopapNetwork/PopupNetwork';
 import { getSolanaBoughtTokensFromContract } from './solana/get-solana-bought-tokens';
+import { getSolanaPrice } from './solana/get-solana-price';
+import { Successful } from './Successful/Successful';
 import { YouPayComponent } from './YouPayComponent';
 // import { ConnectSolanaButton } from '../Navbar/ConnectSolanaButton';
 import { BuyButton } from './BuyButton';
+import { getContractOld } from './evm/get-old-contract';
 
-const {
-  RPC_ETH,
-  RPC_BSC,
-} = config;
+const { RPC_ETH, RPC_BSC } = config;
 
 export const BuyWindow = () => {
   const [stage, setStage] = useState('');
@@ -104,7 +102,7 @@ export const BuyWindow = () => {
     loading,
     setSolBalance,
     setSolBalanceFiat,
-    setInputAmountInUsd
+    setInputAmountInUsd,
   } = useBuy();
 
   const { connection } = useConnection();
@@ -137,8 +135,7 @@ export const BuyWindow = () => {
     const fetchData = async () => {
       try {
         const response = await fetch('https://back.flary.finance/api/tokens/totalTokens');
-        if (!response.ok)
-          throw 'Response was not successful';
+        if (!response.ok) throw 'Response was not successful';
         const result = await response.json();
         setTokenSold(result);
       } catch (e) {
@@ -170,8 +167,8 @@ export const BuyWindow = () => {
         setUsdtPerStage(USDT_STAGE_2 + USDT_STAGE_1 + USDT_STAGE_3);
         setCollected(
           (tokenSold - TOKEN_CAP_STAGE_1 - TOKEN_CAP_STAGE_2) * tokenPriceActually +
-          USDT_STAGE_2 +
-          USDT_STAGE_1,
+            USDT_STAGE_2 +
+            USDT_STAGE_1,
         );
         setProgress((collected / usdtPerStage) * 100);
       } else if (tokenSold >= 16137500 && tokenSold < 20087500) {
@@ -181,10 +178,10 @@ export const BuyWindow = () => {
         setUsdtPerStage(USDT_STAGE_2 + USDT_STAGE_1 + USDT_STAGE_3 + USDT_STAGE_4);
         setCollected(
           (tokenSold - TOKEN_CAP_STAGE_1 - TOKEN_CAP_STAGE_2 - TOKEN_CAP_STAGE_3) *
-          tokenPriceActually +
-          USDT_STAGE_2 +
-          USDT_STAGE_1 +
-          USDT_STAGE_3,
+            tokenPriceActually +
+            USDT_STAGE_2 +
+            USDT_STAGE_1 +
+            USDT_STAGE_3,
         );
         setProgress((collected / usdtPerStage) * 100);
       } else if (tokenSold >= 20087500 && tokenSold < 23750000) {
@@ -198,11 +195,11 @@ export const BuyWindow = () => {
             TOKEN_CAP_STAGE_2 -
             TOKEN_CAP_STAGE_3 -
             TOKEN_CAP_STAGE_4) *
-          tokenPriceActually +
-          USDT_STAGE_2 +
-          USDT_STAGE_1 +
-          USDT_STAGE_3 +
-          USDT_STAGE_4,
+            tokenPriceActually +
+            USDT_STAGE_2 +
+            USDT_STAGE_1 +
+            USDT_STAGE_3 +
+            USDT_STAGE_4,
         );
         setProgress((collected / usdtPerStage) * 100);
       } else {
@@ -219,12 +216,12 @@ export const BuyWindow = () => {
             TOKEN_CAP_STAGE_3 -
             TOKEN_CAP_STAGE_4 -
             TOKEN_CAP_STAGE_5) *
-          tokenPriceActually +
-          USDT_STAGE_2 +
-          USDT_STAGE_1 +
-          USDT_STAGE_3 +
-          USDT_STAGE_4 +
-          USDT_STAGE_5,
+            tokenPriceActually +
+            USDT_STAGE_2 +
+            USDT_STAGE_1 +
+            USDT_STAGE_3 +
+            USDT_STAGE_4 +
+            USDT_STAGE_5,
         );
         setProgress((collected / usdtPerStage) * 100);
       }
@@ -304,10 +301,9 @@ export const BuyWindow = () => {
       setToken(TOKEN_SOL);
       setTokenImage(SOL);
 
-      console.log('solana', "settomf", solBalance, solBalanceFiat);
+      console.log('solana', 'settomf', solBalance, solBalanceFiat);
 
       if (publicKey) {
-
         const price = await getSolanaPrice();
         console.log('price:', price);
 
@@ -318,16 +314,13 @@ export const BuyWindow = () => {
         console.log('balanceSol:', balanceSol);
         console.log('balanceSolFiat:', balanceSolFiat);
 
-
         setSolBalance(roundToDecimalsSmaller(balanceSol, 3));
         setSolBalanceFiat(roundToDecimalsSmaller(balanceSolFiat, 2));
       }
 
-
       setBalanceValue(solBalance);
       setBalanceValueFiat(solBalanceFiat);
     }
-
 
     if (controlDrop) {
       setDropNetwork(!dropNetwork);
@@ -364,16 +357,19 @@ export const BuyWindow = () => {
 
     const provider = new ethers.JsonRpcProvider(providerRpc);
     const contract = getContract(network, provider);
+    const contractOld = getContractOld(network, provider);
 
+    const balance2 = await contractOld.investemetByAddress(address);
     const balance = await contract.investemetByAddress(address);
-
-    return Number(ethers.formatEther(balance));
+    if (network === NETWORK_ETHEREUM) {
+      return Number(ethers.formatEther( balance +balance2));
+    } else{
+      return Number(ethers.formatEther(balance ));
+    }
   };
 
   const getSolanaBoughtTokens = async () => {
-    return publicKey
-      ? getSolanaBoughtTokensFromContract(publicKey, connection)
-      : 0;
+    return publicKey ? getSolanaBoughtTokensFromContract(publicKey, connection) : 0;
   };
 
   const initBaseCurrenciesPrices = async () => {
@@ -430,7 +426,7 @@ export const BuyWindow = () => {
 
   //@ts-ignore
   const updateReceivedValue = (amountToPay) => {
-    console.log("Update received price");
+    console.log('Update received price');
 
     setTokensToAmount(amountToPay);
 
@@ -441,10 +437,10 @@ export const BuyWindow = () => {
 
     setTokensFromAmount(tokensFromAmountNew);
 
-    console.log("Is base coin selected", _isBaseCoinSelected);
-    console.log("Amount to pay", amountToPay);
-    console.log("Tokens from amount", tokensFromAmountNew);
-  }
+    console.log('Is base coin selected', _isBaseCoinSelected);
+    console.log('Amount to pay', amountToPay);
+    console.log('Tokens from amount', tokensFromAmountNew);
+  };
 
   return (
     <div className={style.BuyWindow}>
@@ -479,11 +475,8 @@ export const BuyWindow = () => {
 
       <Progress progress={progress.toFixed(2)} />
       <p>
-        Raised USD : $
-        {collected
-          .toFixed()
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
-        / ${usdtPerStage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+        Raised USD : ${collected.toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} / $
+        {usdtPerStage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
       </p>
 
       <div className={style.button_group}>
@@ -493,11 +486,11 @@ export const BuyWindow = () => {
           style={
             dropNetwork
               ? {
-                borderBottomLeftRadius: '0',
-                borderBottomRightRadius: '0',
-                padding: '10px 15px',
-                width: '100%',
-              }
+                  borderBottomLeftRadius: '0',
+                  borderBottomRightRadius: '0',
+                  padding: '10px 15px',
+                  width: '100%',
+                }
               : { padding: '10px 15px', width: '100%' }
           }>
           <div className={style.button_tittle}>
@@ -546,7 +539,7 @@ export const BuyWindow = () => {
               placeholder="0.0"
               value={tokensToAmount}
               onChange={(e) => {
-                updateReceivedValue(Number(e.target.value))
+                updateReceivedValue(Number(e.target.value));
               }}
             />
           </div>
@@ -583,7 +576,7 @@ const NetworkDropDownElement = ({ img, network, handlerChangeNetwork, name }) =>
       <p>{name}</p>
     </div>
   );
-}
+};
 
 const roundToDecimalsSmaller = (value: number, decimals: number) => {
   const [integer, decimal] = value.toString().split('.');
