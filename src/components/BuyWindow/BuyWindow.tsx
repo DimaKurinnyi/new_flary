@@ -361,11 +361,8 @@ export const BuyWindow = () => {
 
     const balance2 = await contractOld.investemetByAddress(address);
     const balance = await contract.investemetByAddress(address);
-    if (network === NETWORK_ETHEREUM) {
-      return Number(ethers.formatEther( balance +balance2));
-    } else{
-      return Number(ethers.formatEther(balance ));
-    }
+
+    return Number(ethers.formatEther(balance + balance2));
   };
 
   const getSolanaBoughtTokens = async () => {
