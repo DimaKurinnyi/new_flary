@@ -22,9 +22,9 @@ function ConnectHeaderMenu() {
       className={isEvmConnected || isSolanaConnected ? style.connect_active : style.connect_button}
       onClick={toggleDropdown}>
       {isSolanaConnected ? (
-        <SolanaConnectedButtonContent weight={600} size={20} />
+        <SolanaConnectedButtonContent weight={600} size={18} />
       ) : isEvmConnected ? (
-        <EvmConnectedButtonContent weight={600} size={20} />
+        <EvmConnectedButtonContent weight={600} size={18} />
       ) : (
         <NotConnectedButtonContent />
       )}
