@@ -44,7 +44,7 @@ export const TokenInfo = () => {
           </div>
           <div className={style.blok_content}>
             <p>TOKEN SUPPLY</p>
-            <p> 1.000.000.000</p>
+            <p> 100.000.000</p>
           </div>
           <div className={style.blok_content}>
             <p>INITIAL MARKET CAP</p>

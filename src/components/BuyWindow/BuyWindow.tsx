@@ -153,7 +153,7 @@ export const BuyWindow = () => {
         setUsdtPerStage(USDT_STAGE_1);
         setCollected(tokenSold * tokenPriceActually);
         setProgress((collected / usdtPerStage) * 100);
-      } else if (tokenSold >= TOKEN_CAP_STAGE_1 && tokenSold < 6410714) {
+      } else if (tokenSold >= TOKEN_CAP_STAGE_1 && tokenSold < 4910714) {
         setStage('Stage 2');
         setTokenPriceActually(0.08);
         setCapPerStage(TOKEN_CAP_STAGE_2);

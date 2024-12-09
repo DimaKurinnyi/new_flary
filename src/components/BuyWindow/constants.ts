@@ -10,13 +10,13 @@ export const TOKEN_SOL = 'SOL';
 export const TOKEN_USDC = 'USDC';
 
 export const TOKEN_CAP_STAGE_1 = 4_285_714
-export const TOKEN_CAP_STAGE_2 = 2_125_000
+export const TOKEN_CAP_STAGE_2 = 625_000
 export const TOKEN_CAP_STAGE_3 = 4_187_500
 export const TOKEN_CAP_STAGE_4 = 3_950_000
 export const TOKEN_CAP_STAGE_5 = 3_662_500
 export const TOKEN_CAP_STAGE_6 = 6_250_000
 export const USDT_STAGE_1 = 300000
-export const USDT_STAGE_2 = 170000
+export const USDT_STAGE_2 = 50000
 export const USDT_STAGE_3 = 376875
 export const USDT_STAGE_4 = 395000
 export const USDT_STAGE_5 = 439500
