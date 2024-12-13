@@ -1,5 +1,5 @@
 .connect_button {
-    position:relative;
+  position: relative;
   display: flex;
   align-items: center;
   text-align: center;
@@ -16,46 +16,46 @@
     color: rgb(55, 54, 54);
   }
 }
-.drop_wallets{
-position: absolute;
-bottom: -105px;
-right:0;
-border:1px solid gray;
-border-radius: 10px;
-background-color: rgb(58 54 54 / 100%);
-backdrop-filter:blur(32px);
-padding: 12px;
-display: flex;
-flex-direction:column;
-align-items: center;
-gap: 15px;
+.drop_wallets {
+  position: absolute;
+  bottom: -105px;
+  right: 0;
+  border: 1px solid gray;
+  border-radius: 10px;
+  background-color: rgb(58 54 54 / 100%);
+  backdrop-filter: blur(32px);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
-.drop_address{
-    font-weight: 500;
-    font-size: 16px;
+.drop_address {
+  font-weight: 500;
+  font-size: 16px;
 }
-.wallet{
-    display: flex;
-    align-items: center;
-    gap:10px;
+.wallet {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-.connect_btn{
+.connect_btn {
   font-size: 16px;
   color: #fff;
-  &:hover{
-    color:var(--color-text-darkYellow)
+  &:hover {
+    color: var(--color-text-darkYellow);
   }
 }
-.dis_button{
-font-size: 13px;
-font-weight: 500;
-background: linear-gradient(90deg, #ff5748d9, #fe9452c9);
+.dis_button {
+  font-size: 13px;
+  font-weight: 500;
+  background: linear-gradient(90deg, #ff5748d9, #fe9452c9);
   cursor: pointer;
   color: #000;
   border-radius: 5px;
   padding: 5px 10px;
   transition: 0.3s;
-  &:hover{
+  &:hover {
     background: linear-gradient(90deg, #ff5748, #fe9452);
   }
 }
@@ -64,9 +64,9 @@ background: linear-gradient(90deg, #ff5748d9, #fe9452c9);
   border: 1px solid var(--color-text-darkYellow);
   display: flex;
   align-items: center;
-  border-radius:10px ;
+  border-radius: 10px;
   gap: 6px;
-  padding:9px;
+  padding: 9px;
   img {
     width: 25px;
     height: 25px;
@@ -79,12 +79,15 @@ background: linear-gradient(90deg, #ff5748d9, #fe9452c9);
 }
 
 @media (max-width: 440px) {
-  .dis_button{
-    p{
+  .drop_wallets {
+    align-items: start;
+  }
+  .dis_button {
+    p {
       font-size: 10px;
     }
   }
-  .connect_btn{
-
-font-size: 10px;}
+  .connect_btn {
+    font-size: 10px;
+  }
 }

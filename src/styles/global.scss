@@ -84,10 +84,9 @@ a {
   }
 }
 .wallet-adapter-modal-wrapper {
-  .wallet-adapter-modal-button-close  {
+  .wallet-adapter-modal-button-close {
     background: transparent;
     filter: brightness(170%);
-    
   }
 }
 
@@ -116,6 +115,19 @@ a {
     }
     button {
       width: fit-content;
+    }
+  }
+  .wallet-adapter-dropdown {
+    button {
+      font-size: 12px;
+      background: transparent;
+      display: flex;
+      line-height: normal;
+      height: fit-content;
+      padding: 0;
+      align-items: center;
+      gap: 10px;
+      margin-top: 0px;
     }
   }
   .wallet-adapter-modal-list {
