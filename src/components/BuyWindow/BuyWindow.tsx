@@ -465,10 +465,14 @@ export const BuyWindow = () => {
           : (tokenPriceActually + 0.02).toFixed(2)}
       </p>
 
-      <p style={{ marginTop: '15px', fontSize: '20px' }}>
-        <span style={{ fontSize: '20px' }}>Your holdings:</span> {tokenHoldings}
-      </p>
-      <p></p>
+      <div style={{ display: 'flex' }}>
+        <p style={{ marginTop: '15px', fontSize: '20px', display: 'inline' }}>
+          <span style={{ fontSize: '20px' }}>Your holdings:&nbsp;</span>
+        </p>
+        <p style={{ marginTop: '15px', fontSize: '20px', display: 'inline' }}>
+          {tokenHoldings}
+        </p>
+      </div>
 
       <Progress progress={progress.toFixed(2)} />
       <p>
