@@ -11,6 +11,7 @@ import { useWallet as useWalletSolana } from '@solana/wallet-adapter-react';
 import { useBuy } from './BuyContext';
 import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 import { MakeAPurchaseButton } from './BuyButton';
+import { useWalletConnectButton} from '@solana/wallet-adapter-base-ui';
 
 const {
     SOL_USDC_ADDRESS,
@@ -34,12 +35,13 @@ export const BuyButtonSolana = ({
 
 const ConnectSolanaButton = () => {
     const { setVisible } = useWalletModal();
+    const { onButtonClick: onWalletConnect } = useWalletConnectButton()
 
     return (
         <div
             className={style.pay_button}
             
-            onClick={() => setVisible(true)}>
+            onClick={onWalletConnect}>
             Connect Solana Wallet To Buy FLFI
         </div>
     )

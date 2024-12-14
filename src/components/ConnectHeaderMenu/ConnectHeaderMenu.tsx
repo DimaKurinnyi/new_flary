@@ -1,7 +1,7 @@
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import { useWalletConnectButton, useWalletDisconnectButton } from '@solana/wallet-adapter-base-ui';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useWalletModal, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { useWalletModal, WalletMultiButton  , WalletDisconnectButton, WalletConnectButton} from '@solana/wallet-adapter-react-ui';
 import { useEffect, useState } from 'react';
 import { useAccount, useDisconnect } from 'wagmi';
 import style from './ConnectHeaderMenu.module.scss';
@@ -147,6 +147,7 @@ const ConnectSolanaCustomButton = () => {
 const SolanaConnectionManagerElement = () => {
   const { connected: isSolanaConnected, disconnect } = useWallet();
   const { onButtonClick: onWalletDisconnect } = useWalletDisconnectButton();
+  
 
   // return (
   //   <div className={style.connect_content}>

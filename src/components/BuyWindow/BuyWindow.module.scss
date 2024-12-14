@@ -261,5 +261,6 @@ width: 100%;
     display: block;
   }
 }
-@media (max-width: 440px) {
+@media (max-width: 390px) {
+  .pay_button {font-size: 14px;}
 }
