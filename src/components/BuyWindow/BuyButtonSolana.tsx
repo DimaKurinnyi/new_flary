@@ -9,7 +9,7 @@ import { config } from '../../config';
 import { getAssociatedTokenAddress } from '@solana/spl-token';
 import { useWallet as useWalletSolana } from '@solana/wallet-adapter-react';
 import { useBuy } from './BuyContext';
-import { useWalletModal } from '@solana/wallet-adapter-react-ui';
+// import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 import { MakeAPurchaseButton } from './BuyButton';
 import { useWalletConnectButton} from '@solana/wallet-adapter-base-ui';
 
@@ -34,7 +34,7 @@ export const BuyButtonSolana = ({
 };
 
 const ConnectSolanaButton = () => {
-    const { setVisible } = useWalletModal();
+    // const { setVisible } = useWalletModal();
     const { onButtonClick: onWalletConnect } = useWalletConnectButton()
 
     return (
