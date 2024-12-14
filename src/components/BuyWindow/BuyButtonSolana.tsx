@@ -9,9 +9,11 @@ import { config } from '../../config';
 import { getAssociatedTokenAddress } from '@solana/spl-token';
 import { useWallet as useWalletSolana } from '@solana/wallet-adapter-react';
 import { useBuy } from './BuyContext';
-// import { useWalletModal } from '@solana/wallet-adapter-react-ui';
+import { useWalletModal } from '@solana/wallet-adapter-react-ui';
 import { MakeAPurchaseButton } from './BuyButton';
 import { useWalletConnectButton} from '@solana/wallet-adapter-base-ui';
+
+import isMobile from 'is-mobile';
 
 const {
     SOL_USDC_ADDRESS,
@@ -29,11 +31,11 @@ export const BuyButtonSolana = ({
     const { connected: isSolanaConnected } = useWalletSolana();
 
     return (
-        (isSolanaConnected ? <ProcessPaymentButtonSolana updateTokenHoldings={updateTokenHoldings} /> : <ConnectSolanaButton />)
+        (isSolanaConnected ? <ProcessPaymentButtonSolana updateTokenHoldings={updateTokenHoldings} /> : (isMobile() ? <ConnectSolanaButtonMob/> :<ConnectSolanaButton/>))
     );
 };
 
-const ConnectSolanaButton = () => {
+const ConnectSolanaButtonMob = () => {
     // const { setVisible } = useWalletModal();
     const { onButtonClick: onWalletConnect } = useWalletConnectButton()
 
@@ -42,6 +44,19 @@ const ConnectSolanaButton = () => {
             className={style.pay_button}
             
             onClick={onWalletConnect}>
+            Connect Solana Wallet To Buy FLFI
+        </div>
+    )
+};
+const ConnectSolanaButton = () => {
+    const { setVisible } = useWalletModal();
+    
+
+    return (
+        <div
+            className={style.pay_button}
+            
+            onClick={() => setVisible(true)}>
             Connect Solana Wallet To Buy FLFI
         </div>
     )

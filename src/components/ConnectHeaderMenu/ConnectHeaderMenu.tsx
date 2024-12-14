@@ -168,7 +168,7 @@ const SolanaConnectionManagerElement = () => {
         <WalletMultiButton />
         <DisconnectButton disconnect={onWalletDisconnect} />
       </>
-      ) : <WalletMultiButton />}
+      ) : <WalletMultiButton   />}
     </div>
   ) : (
     <div className={style.connect_content}>
