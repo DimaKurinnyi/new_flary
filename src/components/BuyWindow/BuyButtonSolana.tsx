@@ -1,6 +1,6 @@
 import { BN, Program } from '@coral-xyz/anchor';
 import { getAssociatedTokenAddress } from '@solana/spl-token';
-import { useWalletConnectButton } from '@solana/wallet-adapter-base-ui';
+// import { useWalletConnectButton } from '@solana/wallet-adapter-base-ui';
 import {
   useConnection,
   useWallet,
@@ -15,7 +15,7 @@ import style from './BuyWindow.module.scss';
 import { TOKEN_SOL } from './constants';
 import IDL from './solana/IDL.json';
 
-import isMobile from 'is-mobile';
+// import isMobile from 'is-mobile';
 
 const { SOL_USDC_ADDRESS, TOKEN_PROGRAM, SOL_PROGRAM_PUBLIC_KEY } = config;
 
