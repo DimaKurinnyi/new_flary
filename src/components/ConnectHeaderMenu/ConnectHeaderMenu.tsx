@@ -1,12 +1,14 @@
 import { useConnectModal } from '@rainbow-me/rainbowkit';
-import { useWalletConnectButton, useWalletDisconnectButton } from '@solana/wallet-adapter-base-ui';
+import { useWalletConnectButton } from '@solana/wallet-adapter-base-ui';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useWalletModal, WalletMultiButton  } from '@solana/wallet-adapter-react-ui';
+import { useWalletModal
+  
+  } from '@solana/wallet-adapter-react-ui';
 import { useEffect, useState } from 'react';
 import { useAccount, useDisconnect } from 'wagmi';
 import style from './ConnectHeaderMenu.module.scss';
 
-import isMobile from 'is-mobile';
+// import isMobile from 'is-mobile';
 import Arrow from '../../assets/arrow_down.svg';
 import ETH from '../../assets/ETH.svg';
 import SOL from '../../assets/solana.svg';
