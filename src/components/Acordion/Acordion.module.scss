@@ -1,0 +1,40 @@
+.acordion {
+  margin: 75px auto 0;
+  max-width: 902px;
+  width: 100%;
+}
+.acordion_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 1px solid #ffffff3e;
+  padding-bottom: 15px;
+}
+.acordion_item {
+  margin-bottom: 25px;
+}
+.acordion_collapse {
+  margin-top: 25px;
+  height: 0;
+  overflow: scroll;
+  transition: height 0.3s;
+}
+.acordion_collapse.open {
+  height: 100%;
+}
+@media (max-width: 768px) {
+    .acordion_item {
+        margin-bottom: 15px;
+      }
+  .acordion_header {
+    & h2 {
+      font-size: 16px;
+    }
+  }
+  .acordion_body{
+    margin-top: 0px;
+    
+    font-size: 13px;
+  }
+}

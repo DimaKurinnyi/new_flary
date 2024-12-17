@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import {
   AboutAs,
+  
   Blocks,
+  FAQ,
   Header,
   Modularity,
   Navbar,
@@ -14,9 +16,14 @@ import {
 import style from './Home.module.scss';
 
 export const Home = () => {
+  
   const navLink = [
     { link: '/how-to-buy', tittle: 'How To Buy', id: 'how-to-buy' },
-    { link: 'https://flary-finance.gitbook.io/flary-finance', tittle: 'Documentation', id: 'how-to-buy' },
+    {
+      link: 'https://flary-finance.gitbook.io/flary-finance',
+      tittle: 'Documentation',
+      id: 'how-to-buy',
+    },
     // { link: '/giveaway', tittle: 'Win $333K', id: 'giveaway' },
   ];
   useEffect(() => {
@@ -38,6 +45,7 @@ export const Home = () => {
         <TokenInfo />
         <Tekenomics />
         <Roadmap />
+        <FAQ/>
       </div>
     </>
   );

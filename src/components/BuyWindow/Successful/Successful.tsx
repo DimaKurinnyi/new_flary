@@ -2,7 +2,7 @@ import style from './Successful.module.scss'
 
 export const Successful = () => {
 	return (
-		<div className={style.main_container}>
+		<div className={style.main_container} id="success_operation">
 			<div className={style.check_container}>
 				<div className={style.check_background}>
 					<svg viewBox="0 0 65 51" fill="none" xmlns="http://www.w3.org/2000/svg">

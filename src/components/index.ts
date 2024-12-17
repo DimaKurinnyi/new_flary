@@ -17,3 +17,4 @@ export { Tekenomics } from './Tekenomics/Tekenomics';
 export { Tiker } from './Tiker/Tiker';
 // export { Timer } from './Timer/Timer';
 export { TokenInfo } from './TokenInfo/TokenInfo';
+export {FAQ} from './FAQ/FAQ';

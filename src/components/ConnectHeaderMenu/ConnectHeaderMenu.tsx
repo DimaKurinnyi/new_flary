@@ -146,34 +146,13 @@ const ConnectSolanaCustomButton = () => {
 
 const SolanaConnectionManagerElement = () => {
   const { connected: isSolanaConnected, disconnect } = useWallet();
-  const { onButtonClick: onWalletDisconnect } = useWalletDisconnectButton();
+  // const { onButtonClick: onWalletDisconnect } = useWalletDisconnectButton();
   
 
-  // return (
-  //   <div className={style.connect_content}>
-  //     {isSolanaConnected ? (
-  //       <>
-  //         <SolanaConnectedButtonContent weight={500} size={16} />
-  //         <DisconnectButton disconnect={disconnect} />
-  //       </>
-  //     ) : (
-  //       <ConnectSolanaCustomButton />
-  //     )}
-  //   </div>
-  // );
-  return isMobile() ? (
+  return (
     <div className={style.connect_content}>
-     { isSolanaConnected ? (
-      <>
-        <WalletMultiButton />
-        <DisconnectButton disconnect={onWalletDisconnect} />
-      </>
-      ) : <WalletMultiButton   />}
-    </div>
-  ) : (
-    <div className={style.connect_content}>
-      { isSolanaConnected ? (
-        < >
+      {isSolanaConnected ? (
+        <>
           <SolanaConnectedButtonContent weight={500} size={16} />
           <DisconnectButton disconnect={disconnect} />
         </>
@@ -182,6 +161,27 @@ const SolanaConnectionManagerElement = () => {
       )}
     </div>
   );
+  // return isMobile() ? (
+  //   <div className={style.connect_content}>
+  //    { isSolanaConnected ? (
+  //     <>
+  //       <WalletMultiButton />
+  //       <DisconnectButton disconnect={onWalletDisconnect} />
+  //     </>
+  //     ) : <WalletMultiButton   />}
+  //   </div>
+  // ) : (
+  //   <div className={style.connect_content}>
+  //     { isSolanaConnected ? (
+  //       < >
+  //         <SolanaConnectedButtonContent weight={500} size={16} />
+  //         <DisconnectButton disconnect={disconnect} />
+  //       </>
+  //     ) : (
+  //       <ConnectSolanaCustomButton />
+  //     )}
+  //   </div>
+  // );
 };
 
 const EvmConnectionManageElement = () => {
