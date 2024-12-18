@@ -1,12 +1,14 @@
 import { useConnectModal } from '@rainbow-me/rainbowkit';
-import { useWalletConnectButton, useWalletDisconnectButton } from '@solana/wallet-adapter-base-ui';
+import { useWalletConnectButton } from '@solana/wallet-adapter-base-ui';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useWalletModal, WalletMultiButton  } from '@solana/wallet-adapter-react-ui';
+import { useWalletModal
+  
+  } from '@solana/wallet-adapter-react-ui';
 import { useEffect, useState } from 'react';
 import { useAccount, useDisconnect } from 'wagmi';
 import style from './ConnectHeaderMenu.module.scss';
 
-import isMobile from 'is-mobile';
+// import isMobile from 'is-mobile';
 import Arrow from '../../assets/arrow_down.svg';
 import ETH from '../../assets/ETH.svg';
 import SOL from '../../assets/solana.svg';
@@ -146,34 +148,13 @@ const ConnectSolanaCustomButton = () => {
 
 const SolanaConnectionManagerElement = () => {
   const { connected: isSolanaConnected, disconnect } = useWallet();
-  const { onButtonClick: onWalletDisconnect } = useWalletDisconnectButton();
+  // const { onButtonClick: onWalletDisconnect } = useWalletDisconnectButton();
   
 
-  // return (
-  //   <div className={style.connect_content}>
-  //     {isSolanaConnected ? (
-  //       <>
-  //         <SolanaConnectedButtonContent weight={500} size={16} />
-  //         <DisconnectButton disconnect={disconnect} />
-  //       </>
-  //     ) : (
-  //       <ConnectSolanaCustomButton />
-  //     )}
-  //   </div>
-  // );
-  return isMobile() ? (
+  return (
     <div className={style.connect_content}>
-     { isSolanaConnected ? (
-      <>
-        <WalletMultiButton />
-        <DisconnectButton disconnect={onWalletDisconnect} />
-      </>
-      ) : <WalletMultiButton   />}
-    </div>
-  ) : (
-    <div className={style.connect_content}>
-      { isSolanaConnected ? (
-        < >
+      {isSolanaConnected ? (
+        <>
           <SolanaConnectedButtonContent weight={500} size={16} />
           <DisconnectButton disconnect={disconnect} />
         </>
@@ -182,6 +163,27 @@ const SolanaConnectionManagerElement = () => {
       )}
     </div>
   );
+  // return isMobile() ? (
+  //   <div className={style.connect_content}>
+  //    { isSolanaConnected ? (
+  //     <>
+  //       <WalletMultiButton />
+  //       <DisconnectButton disconnect={onWalletDisconnect} />
+  //     </>
+  //     ) : <WalletMultiButton   />}
+  //   </div>
+  // ) : (
+  //   <div className={style.connect_content}>
+  //     { isSolanaConnected ? (
+  //       < >
+  //         <SolanaConnectedButtonContent weight={500} size={16} />
+  //         <DisconnectButton disconnect={disconnect} />
+  //       </>
+  //     ) : (
+  //       <ConnectSolanaCustomButton />
+  //     )}
+  //   </div>
+  // );
 };
 
 const EvmConnectionManageElement = () => {

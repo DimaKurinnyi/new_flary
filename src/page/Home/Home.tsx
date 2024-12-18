@@ -3,7 +3,7 @@ import {
   AboutAs,
   
   Blocks,
-  FAQ,
+  
   Header,
   Modularity,
   Navbar,
@@ -45,7 +45,7 @@ export const Home = () => {
         <TokenInfo />
         <Tekenomics />
         <Roadmap />
-        <FAQ/>
+        
       </div>
     </>
   );

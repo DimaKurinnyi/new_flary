@@ -22,6 +22,14 @@ body {
 a {
   color: #fff;
 }
+.maim_container_success {
+  width: 100%;
+  margin: 15px 0 ;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
 .tittle {
   font-size: 48px;
   font-weight: 700;
