@@ -36,16 +36,7 @@ export const BuyButtonSolana = ({
   ;
 };
 
-// const ConnectSolanaButtonMob = () => {
-//   // const { setVisible } = useWalletModal();
-//   const { onButtonClick: onWalletConnect } = useWalletConnectButton();
 
-//   return (
-//     <div className={style.pay_button} onClick={onWalletConnect}>
-//       Connect Solana Wallet To Buy FLFI
-//     </div>
-//   );
-// };
 const ConnectSolanaButton = () => {
   const { setVisible } = useWalletModal();
 
