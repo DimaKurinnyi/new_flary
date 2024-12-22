@@ -180,7 +180,7 @@ const SolanaConnectionManagerElement = () => {
       ) : (
         <div className={style.connect_content}>
           <img src={SOL} alt="" />
-          <BaseWalletMultiButton labels={LABELS}  />
+          <WalletMultiButton   />
         </div>
       )}
     </div>
