@@ -103,10 +103,6 @@ export const Roadmap = () => {
                 <div className={style.infoLine}>TGE</div>
               </div>
               <div className={style.infoData}>
-                <div className={style.dotYellow}></div>
-                <div className={style.infoLine}>Release Technical Documentation </div>
-              </div>
-              <div className={style.infoData}>
                 <div className={style.dotWhite}></div>
                 <div className={style.infoLine}>Governance Model Implementation</div>
               </div>
