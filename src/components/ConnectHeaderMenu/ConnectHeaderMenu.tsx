@@ -1,9 +1,7 @@
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import { useWalletConnectButton, useWalletDisconnectButton } from '@solana/wallet-adapter-base-ui';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useWalletModal, WalletMultiButton
-  
-  } from '@solana/wallet-adapter-react-ui';
+import { BaseWalletMultiButton, useWalletModal, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useEffect, useState } from 'react';
 import { useAccount, useDisconnect } from 'wagmi';
 import style from './ConnectHeaderMenu.module.scss';
@@ -149,7 +147,6 @@ const ConnectSolanaCustomButton = () => {
 const SolanaConnectionManagerElement = () => {
   const { connected: isSolanaConnected, disconnect } = useWallet();
   const { onButtonClick: onWalletDisconnect } = useWalletDisconnectButton();
-  
 
   // return (
   //   <div className={style.connect_content}>
@@ -163,19 +160,34 @@ const SolanaConnectionManagerElement = () => {
   //     )}
   //   </div>
   // );
+  const LABELS = {
+    'change-wallet': 'Change wallet',
+    connecting: 'Connecting ...',
+    'copy-address': 'Copy address',
+    copied: 'Copied',
+    disconnect: 'Disconnect',
+    'has-wallet': 'Connect',
+    'no-wallet': 'Connect SOL',
+} as const;
+
   return isMobile() ? (
     <div className={style.connect_content}>
-     { isSolanaConnected ? (
-      <>
-        <WalletMultiButton />
-        <DisconnectButton disconnect={onWalletDisconnect} />
-      </>
-      ) : <WalletMultiButton   />}
+      {isSolanaConnected ? (
+        <>
+          <WalletMultiButton />
+          <DisconnectButton disconnect={onWalletDisconnect} />
+        </>
+      ) : (
+        <div className={style.connect_content}>
+          <img src={SOL} alt="" />
+          <BaseWalletMultiButton labels={LABELS}  />
+        </div>
+      )}
     </div>
   ) : (
     <div className={style.connect_content}>
-      { isSolanaConnected ? (
-        < >
+      {isSolanaConnected ? (
+        <>
           <SolanaConnectedButtonContent weight={500} size={16} />
           <DisconnectButton disconnect={disconnect} />
         </>
