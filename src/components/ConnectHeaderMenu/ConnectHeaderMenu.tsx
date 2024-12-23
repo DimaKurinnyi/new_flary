@@ -170,10 +170,10 @@ const SolanaConnectionManagerElement = () => {
           <DisconnectButton disconnect={onWalletDisconnect} />
         </>
       ) : (
-        // <div className={style.connect_content}>
-        //   <img src={SOL} alt="" />
+        <div className={style.connect_content}>
+          <img src={SOL} alt="" />
           <WalletMultiButton   />
-        // </div>
+        </div>
       )}
     </div>
   ) : (

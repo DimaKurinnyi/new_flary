@@ -6,8 +6,9 @@ import {
   useWallet,
   useWallet as useWalletSolana,
 } from '@solana/wallet-adapter-react';
-import { useWalletModal } from '@solana/wallet-adapter-react-ui';
+import { BaseWalletMultiButton, useWalletModal } from '@solana/wallet-adapter-react-ui';
 import { LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction } from '@solana/web3.js';
+import isMobile from 'is-mobile';
 import { config } from '../../config';
 import { MakeAPurchaseButton } from './BuyButton';
 import { useBuy } from './BuyContext';
@@ -21,6 +22,15 @@ const { SOL_USDC_ADDRESS, TOKEN_PROGRAM, SOL_PROGRAM_PUBLIC_KEY } = config;
 
 const flaryTokenSaleAddress = new PublicKey(SOL_PROGRAM_PUBLIC_KEY);
 const USDC_MINT_ADDRESS = new PublicKey(SOL_USDC_ADDRESS);
+const LABELS = {
+  'change-wallet': 'Change wallet',
+  connecting: 'Connecting ...',
+  'copy-address': 'Copy address',
+  copied: 'Copied',
+  disconnect: 'Disconnect',
+  'has-wallet': 'Connect',
+  'no-wallet': 'Connect Solana Wallet To Buy FLFI',
+} as const;
 
 export const BuyButtonSolana = ({
   //@ts-ignore
@@ -30,12 +40,14 @@ export const BuyButtonSolana = ({
 
   return isSolanaConnected ? (
     <ProcessPaymentButtonSolana updateTokenHoldings={updateTokenHoldings} />
-  ) : 
-    
+  ) : isMobile() ? (
+    <div className={style.pay_button}>
+      <BaseWalletMultiButton labels={LABELS}  />
+     </div>
+  ) : (
     <ConnectSolanaButton />
-  ;
+  );
 };
-
 
 const ConnectSolanaButton = () => {
   const { setVisible } = useWalletModal();

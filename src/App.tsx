@@ -53,7 +53,7 @@ function App() {
       <div className="wrapper">
 
         <ConnectionProvider endpoint={"https://wandering-quick-surf.solana-mainnet.quiknode.pro/7e0ea05258629b697614d8c356dc1a0abdc169df"}>
-          <WalletProvider wallets={wallets} >
+          <WalletProvider wallets={wallets} autoConnect >
             <WalletModalProvider>
 
               <Routes>
