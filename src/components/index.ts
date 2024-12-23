@@ -18,3 +18,5 @@ export { Tiker } from './Tiker/Tiker';
 // export { Timer } from './Timer/Timer';
 export { TokenInfo } from './TokenInfo/TokenInfo';
 export {FAQ} from './FAQ/FAQ';
+export {HowToBuyGuide} from './Bajan/HowToBuyGuide';
+export {Tabs} from './Tabs/Tabs';

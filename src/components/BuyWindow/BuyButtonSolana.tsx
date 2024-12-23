@@ -28,7 +28,7 @@ const LABELS = {
   'copy-address': 'Copy address',
   copied: 'Copied',
   disconnect: 'Disconnect',
-  'has-wallet': 'Connect',
+  'has-wallet': 'Connect SOL',
   'no-wallet': 'Connect Solana Wallet To Buy FLFI',
 } as const;
 

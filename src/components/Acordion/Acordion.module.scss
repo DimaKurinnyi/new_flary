@@ -11,6 +11,9 @@
   gap: 10px;
   border-bottom: 1px solid #ffffff3e;
   padding-bottom: 15px;
+  & h2 {
+    text-align: left;
+  }
 }
 .acordion_item {
   margin-bottom: 25px;
@@ -18,11 +21,14 @@
 .acordion_collapse {
   margin-top: 25px;
   height: 0;
-  overflow: scroll;
+  overflow: hidden;
   transition: height 0.3s;
 }
 .acordion_collapse.open {
   height: 100%;
+}
+.acordion_body{
+  text-align: left;
 }
 @media (max-width: 768px) {
     .acordion_item {

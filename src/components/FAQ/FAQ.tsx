@@ -32,7 +32,7 @@ export const FAQ = () => {
           href="https://flary-finance.gitbook.io/flary-finance/"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: 'blue', textDecoration: 'underline' }}
+          style={{ color: '#ffa957', textDecoration: 'underline' }}
         >
           Flary Finance GitBook
         </a>
@@ -59,7 +59,7 @@ export const FAQ = () => {
             style={{ color: 'blue', textDecoration: 'underline' }}
           >
             https://flary.finance/contact
-          </a>{' '}
+          </a>
           to report the issue and get guidance on the necessary steps to take.
           <br />
           <br />
@@ -81,7 +81,7 @@ export const FAQ = () => {
   ];
   return (
     <div className={style.FAQ}>
-        <h1 className="tittle">FAQ</h1>
+        
         <p className={style.description}>Got Questions? We've Got Answers!</p>
       <Acordion list={list} />
     </div>

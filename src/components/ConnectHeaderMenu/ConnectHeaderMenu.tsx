@@ -165,7 +165,7 @@ const SolanaConnectionManagerElement = () => {
     'copy-address': 'Copy address',
     copied: 'Copied',
     disconnect: 'Disconnect',
-    'has-wallet': 'Connect',
+    'has-wallet': 'Connect SOL',
     'no-wallet': (
       <>
         <img src={SOL} alt="" style={{ width: '24px', height: '24px' }} />
