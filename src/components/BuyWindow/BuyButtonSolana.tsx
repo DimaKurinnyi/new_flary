@@ -42,8 +42,8 @@ export const BuyButtonSolana = ({
     <ProcessPaymentButtonSolana updateTokenHoldings={updateTokenHoldings} />
   ) : isMobile() ? (
     <div className={style.pay_button}>
-      <BaseWalletMultiButton labels={LABELS}  />
-     </div>
+      <BaseWalletMultiButton labels={LABELS} style={{fontSize: '15px',fontWeight: '700',color:'#000'}} />
+    </div>
   ) : (
     <ConnectSolanaButton />
   );
