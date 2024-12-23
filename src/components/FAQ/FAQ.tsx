@@ -51,15 +51,15 @@ export const FAQ = () => {
           <br />
           <strong>2. Contact Flary Finance Support</strong>
           <br />
-          Visit our official support page at{' '}
+          Visit our official support page at <br />
           <a
             href="https://flary.finance/contact"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: 'blue', textDecoration: 'underline' }}
+            style={{ color: '#ffa957', textDecoration: 'underline' }}
           >
             https://flary.finance/contact
-          </a>
+          </a> <br />
           to report the issue and get guidance on the necessary steps to take.
           <br />
           <br />
