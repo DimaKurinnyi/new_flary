@@ -122,7 +122,7 @@ export const HowToBuyGuide = () => {
   return (
     <div>
       
-      <p>Choose the option that matches your preference and get started.</p>
+      
       <Acordion list={list} />
     </div>
   );

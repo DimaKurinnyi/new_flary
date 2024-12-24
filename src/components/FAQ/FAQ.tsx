@@ -82,7 +82,7 @@ export const FAQ = () => {
   return (
     <div className={style.FAQ}>
         
-        <p className={style.description}>Got Questions? We've Got Answers!</p>
+        
       <Acordion list={list} />
     </div>
   );

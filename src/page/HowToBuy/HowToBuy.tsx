@@ -22,19 +22,22 @@ export const HowToBuy = () => {
               <p className={style.title_3}>
                 Discover the steps to acquire Flary Finance's $FLFI tokens.
               </p>
+              <p>Choose the option that matches your preference and get started.</p>
             </>
           ) : (
             <>
               <h3>FAQ</h3>
               <p className={style.title_3}>Frequently asked questions</p>
+              <p className={style.description}>Got Questions? We've Got Answers!</p>
             </>
           )}
 
           <Tabs selectedTabId={selectedTabId} setSelectedTabId={setSelectedTabId} />
-          <div className={style.border}>
-            {selectedTabId === 1 ? <HowToBuyGuide /> : <FAQ />}
-            <Link to="/" className={style.button_invest}>
-              Invest now{' '}
+
+          {selectedTabId === 1 ? <HowToBuyGuide /> : <FAQ />}
+          <div className={style.button_invest}>
+            <Link to="/" style={{ width:'fit-content',color:'black' }}>
+              Invest now
             </Link>
           </div>
         </div>
