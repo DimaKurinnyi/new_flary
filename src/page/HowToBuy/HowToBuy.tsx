@@ -19,19 +19,23 @@ export const HowToBuy = () => {
           {selectedTabId === 1 ? (
             <>
               <h3>How to Buy Flary Presale</h3>
-              <p>Discover the steps to acquire Flary Finance's $FLFI tokens.</p>
+              <p className={style.title_3}>
+                Discover the steps to acquire Flary Finance's $FLFI tokens.
+              </p>
             </>
           ) : (
             <>
               <h3>FAQ</h3>
-              <p>Frequently asked questions</p>
+              <p className={style.title_3}>Frequently asked questions</p>
             </>
           )}
 
           <Tabs selectedTabId={selectedTabId} setSelectedTabId={setSelectedTabId} />
           <div className={style.border}>
             {selectedTabId === 1 ? <HowToBuyGuide /> : <FAQ />}
-            <Link to="/" className={style.button_invest}>Invest now </Link>
+            <Link to="/" className={style.button_invest}>
+              Invest now{' '}
+            </Link>
           </div>
         </div>
       </div>
