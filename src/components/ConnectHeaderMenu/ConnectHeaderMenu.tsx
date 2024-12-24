@@ -1,7 +1,11 @@
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import { useWalletConnectButton, useWalletDisconnectButton } from '@solana/wallet-adapter-base-ui';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { BaseWalletMultiButton, useWalletModal, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import {
+  BaseWalletMultiButton,
+  useWalletModal,
+  WalletMultiButton,
+} from '@solana/wallet-adapter-react-ui';
 import { useEffect, useState } from 'react';
 import { useAccount, useDisconnect } from 'wagmi';
 import style from './ConnectHeaderMenu.module.scss';
@@ -145,9 +149,9 @@ const ConnectSolanaCustomButton = () => {
 };
 
 const SolanaConnectionManagerElement = () => {
-  
-  const {connected: isSolanaConnected,  disconnect,} = useWallet();
-  const { onButtonClick: onWalletDisconnect } = useWalletDisconnectButton();const [isConnected, setIsConnected] = useState(isSolanaConnected);
+  const { connected: isSolanaConnected, disconnect } = useWallet();
+  const { onButtonClick: onWalletDisconnect } = useWalletDisconnectButton();
+  const [isConnected, setIsConnected] = useState(isSolanaConnected);
   useEffect(() => {
     setIsConnected(isSolanaConnected);
   }, [isSolanaConnected]);
@@ -166,12 +170,7 @@ const SolanaConnectionManagerElement = () => {
     copied: 'Copied',
     disconnect: 'Disconnect',
     'has-wallet': 'Connect SOL',
-    'no-wallet': (
-      <>
-        <img src={SOL} alt="" style={{ width: '24px', height: '24px' }} />
-        Connect SOL
-      </>
-    ),
+    'no-wallet': 'Connect SOL',
   } as const;
 
   // return (
@@ -196,9 +195,10 @@ const SolanaConnectionManagerElement = () => {
         </>
       ) : (
         //@ts-ignore
-        
-
-       <BaseWalletMultiButton labels={LABELS} />
+        <>
+          <img src={SOL} alt="" style={{ width: '24px', height: '24px' }} />
+          <BaseWalletMultiButton labels={LABELS} />
+        </>
       )}
     </div>
   ) : (

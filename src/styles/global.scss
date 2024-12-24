@@ -24,7 +24,7 @@ a {
 }
 .main_container_success {
   width: 100%;
-  margin: 15px 0 ;
+  margin: 15px 0;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -110,6 +110,11 @@ a {
       filter: none;
       color: black;
     }
+  }
+}
+.wallet-adapter-dropdown {
+  .wallet-adapter-button-start-icon {
+    display: none;
   }
 }
 
