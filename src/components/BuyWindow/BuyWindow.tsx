@@ -21,22 +21,11 @@ import {
   NETWORK_ETHEREUM,
   NETWORK_SOLANA,
   TOKEN_BNB,
-  TOKEN_CAP_STAGE_1,
-  TOKEN_CAP_STAGE_2,
-  TOKEN_CAP_STAGE_3,
-  TOKEN_CAP_STAGE_4,
-  TOKEN_CAP_STAGE_5,
-  TOKEN_CAP_STAGE_6,
   TOKEN_ETHEREUM,
   TOKEN_SOL,
   TOKEN_USDC,
   TOKEN_USDT,
-  USDT_STAGE_1,
-  USDT_STAGE_2,
-  USDT_STAGE_3,
-  USDT_STAGE_4,
-  USDT_STAGE_5,
-  USDT_STAGE_6,
+  stagesList,
 } from './constants';
 import { Error } from './Error';
 import { ErrorTransaction } from './ErrorTransaction/ErrorTransaction';
@@ -55,15 +44,15 @@ import { getContractOld } from './evm/get-old-contract';
 const { RPC_ETH, RPC_BSC } = config;
 
 export const BuyWindow = () => {
-  const [stage, setStage] = useState('');
-  const [capPerStage, setCapPerStage] = useState(0);
-  const [usdtPerStage, setUsdtPerStage] = useState(0);
-  const [collected, setCollected] = useState(0);
+  const [stage, setStage] = useState<string | undefined>('');
+  const [tokenPriceNextStage, setTokenPriceNextStage] = useState(0);
+  const [usdtPerStage, setUsdtPerStage] = useState<number | undefined>(0);
+  const [collected, setCollected] = useState<number | undefined>(0);
   const [progress, setProgress] = useState(0);
   const [tokenSold, setTokenSold] = useState(0);
   const [networkImg, setNetworkImg] = useState(ETH);
   const [tokenHoldings, setTokenHoldings] = useState('0');
-  const [tokenPriceActually, setTokenPriceActually] = useState(0);
+  const [tokenPriceActually, setTokenPriceActually] = useState<number | undefined>(0);
 
   const [openPopupNetwork, setOpenPopupNetwork] = useState(false);
 
@@ -145,118 +134,116 @@ export const BuyWindow = () => {
         setLoading(false);
       }
     };
-    const getStage = async () => {
-      if (tokenSold < TOKEN_CAP_STAGE_1) {
-        setStage('Stage 1');
-        setTokenPriceActually(0.07);
-        setCapPerStage(TOKEN_CAP_STAGE_1);
-        setUsdtPerStage(USDT_STAGE_1);
-        setCollected(tokenSold * tokenPriceActually);
-        setProgress((collected / usdtPerStage) * 100);
-      } else if (tokenSold >= TOKEN_CAP_STAGE_1 && tokenSold < 4910714) {
-        setStage('Stage 2');
-        setTokenPriceActually(0.08);
-        setCapPerStage(TOKEN_CAP_STAGE_2);
-        setUsdtPerStage(USDT_STAGE_2 + USDT_STAGE_1);
-        setCollected((tokenSold - TOKEN_CAP_STAGE_1) * tokenPriceActually + USDT_STAGE_1);
-        setProgress((collected / usdtPerStage) * 100);
-      } else if (tokenSold >= 11950000 && tokenSold < 16137500) {
-        setStage('Stage 3');
-        setTokenPriceActually(0.09);
-        setCapPerStage(TOKEN_CAP_STAGE_3);
-        setUsdtPerStage(USDT_STAGE_2 + USDT_STAGE_1 + USDT_STAGE_3);
-        setCollected(
-          (tokenSold - TOKEN_CAP_STAGE_1 - TOKEN_CAP_STAGE_2) * tokenPriceActually +
-            USDT_STAGE_2 +
-            USDT_STAGE_1,
-        );
-        setProgress((collected / usdtPerStage) * 100);
-      } else if (tokenSold >= 16137500 && tokenSold < 20087500) {
-        setStage('Stage 4');
-        setTokenPriceActually(0.1);
-        setCapPerStage(TOKEN_CAP_STAGE_4);
-        setUsdtPerStage(USDT_STAGE_2 + USDT_STAGE_1 + USDT_STAGE_3 + USDT_STAGE_4);
-        setCollected(
-          (tokenSold - TOKEN_CAP_STAGE_1 - TOKEN_CAP_STAGE_2 - TOKEN_CAP_STAGE_3) *
-            tokenPriceActually +
-            USDT_STAGE_2 +
-            USDT_STAGE_1 +
-            USDT_STAGE_3,
-        );
-        setProgress((collected / usdtPerStage) * 100);
-      } else if (tokenSold >= 20087500 && tokenSold < 23750000) {
-        setStage('Stage 5');
-        setTokenPriceActually(0.12);
-        setCapPerStage(TOKEN_CAP_STAGE_5);
-        setUsdtPerStage(USDT_STAGE_2 + USDT_STAGE_1 + USDT_STAGE_3 + USDT_STAGE_4 + USDT_STAGE_5);
-        setCollected(
-          (tokenSold -
-            TOKEN_CAP_STAGE_1 -
-            TOKEN_CAP_STAGE_2 -
-            TOKEN_CAP_STAGE_3 -
-            TOKEN_CAP_STAGE_4) *
-            tokenPriceActually +
-            USDT_STAGE_2 +
-            USDT_STAGE_1 +
-            USDT_STAGE_3 +
-            USDT_STAGE_4,
-        );
-        setProgress((collected / usdtPerStage) * 100);
-      } else {
-        setStage('Stage 6');
-        setTokenPriceActually(0.14);
-        setCapPerStage(TOKEN_CAP_STAGE_6);
-        setUsdtPerStage(
-          USDT_STAGE_2 + USDT_STAGE_1 + USDT_STAGE_3 + USDT_STAGE_4 + USDT_STAGE_5 + USDT_STAGE_6,
-        );
-        setCollected(
-          (tokenSold -
-            TOKEN_CAP_STAGE_1 -
-            TOKEN_CAP_STAGE_2 -
-            TOKEN_CAP_STAGE_3 -
-            TOKEN_CAP_STAGE_4 -
-            TOKEN_CAP_STAGE_5) *
-            tokenPriceActually +
-            USDT_STAGE_2 +
-            USDT_STAGE_1 +
-            USDT_STAGE_3 +
-            USDT_STAGE_4 +
-            USDT_STAGE_5,
-        );
-        setProgress((collected / usdtPerStage) * 100);
-      }
+
+    const getStage2 = async (tokenSold: number) => {
+      const findStage = stagesList.find((stage) => tokenSold < stage.fullTokenCap);
+      const index = stagesList.findIndex((stage) => tokenSold < stage.fullTokenCap);
+      const priceNextStage = stagesList[index + 1].price;
+
+      // const sumUsdPerIndex = stagesList.slice(0,index).reduce((sum,obj)=>sum+obj.usdCap,0)
+      const sumTokenPerIndex = stagesList
+        .slice(0, index)
+        .reduce((sum, obj) => sum + obj.tokenCap, 0);
+      setStage(findStage?.stage);
+      setTokenPriceActually(findStage?.price);
+      setTokenPriceNextStage(priceNextStage);
+      setUsdtPerStage(findStage?.fullCap);
+      
+      setCollected(
+        //@ts-ignore
+        (tokenSold - sumTokenPerIndex) * tokenPriceActually + stagesList[index - 1].fullCap,
+      );
+      //@ts-ignore
+      setProgress((collected / usdtPerStage) * 100);
     };
+    // const getStage = async () => {
+    //   if (tokenSold < TOKEN_CAP_STAGE_1) {
+    //     setStage('Stage 1');
+    //     setTokenPriceActually(0.07);
+    //     setCapPerStage(TOKEN_CAP_STAGE_1);
+    //     setUsdtPerStage(USDT_STAGE_1);
+    //     setCollected(tokenSold * tokenPriceActually);
+    //     setProgress((collected / usdtPerStage) * 100);
+    //   } else if (tokenSold >= TOKEN_CAP_STAGE_1 && tokenSold < 4910714) {
+    //     setStage('Stage 2');
+    //     setTokenPriceActually(0.08);
+    //     setCapPerStage(TOKEN_CAP_STAGE_2);
+    //     setUsdtPerStage(USDT_STAGE_2 + USDT_STAGE_1);
+    //     setCollected((tokenSold - TOKEN_CAP_STAGE_1) * tokenPriceActually + USDT_STAGE_1);
+    //     setProgress((collected / usdtPerStage) * 100);
+    //   } else if (tokenSold >= 11950000 && tokenSold < 16137500) {
+    //     setStage('Stage 3');
+    //     setTokenPriceActually(0.09);
+    //     setCapPerStage(TOKEN_CAP_STAGE_3);
+    //     setUsdtPerStage(USDT_STAGE_2 + USDT_STAGE_1 + USDT_STAGE_3);
+    //     setCollected(
+    //       (tokenSold - TOKEN_CAP_STAGE_1 - TOKEN_CAP_STAGE_2) * tokenPriceActually +
+    //         USDT_STAGE_2 +
+    //         USDT_STAGE_1,
+    //     );
+    //     setProgress((collected / usdtPerStage) * 100);
+    //   } else if (tokenSold >= 16137500 && tokenSold < 20087500) {
+    //     setStage('Stage 4');
+    //     setTokenPriceActually(0.1);
+    //     setCapPerStage(TOKEN_CAP_STAGE_4);
+    //     setUsdtPerStage(USDT_STAGE_2 + USDT_STAGE_1 + USDT_STAGE_3 + USDT_STAGE_4);
+    //     setCollected(
+    //       (tokenSold - TOKEN_CAP_STAGE_1 - TOKEN_CAP_STAGE_2 - TOKEN_CAP_STAGE_3) *
+    //         tokenPriceActually +
+    //         USDT_STAGE_2 +
+    //         USDT_STAGE_1 +
+    //         USDT_STAGE_3,
+    //     );
+    //     setProgress((collected / usdtPerStage) * 100);
+    //   } else if (tokenSold >= 20087500 && tokenSold < 23750000) {
+    //     setStage('Stage 5');
+    //     setTokenPriceActually(0.12);
+    //     setCapPerStage(TOKEN_CAP_STAGE_5);
+    //     setUsdtPerStage(USDT_STAGE_2 + USDT_STAGE_1 + USDT_STAGE_3 + USDT_STAGE_4 + USDT_STAGE_5);
+    //     setCollected(
+    //       (tokenSold -
+    //         TOKEN_CAP_STAGE_1 -
+    //         TOKEN_CAP_STAGE_2 -
+    //         TOKEN_CAP_STAGE_3 -
+    //         TOKEN_CAP_STAGE_4) *
+    //         tokenPriceActually +
+    //         USDT_STAGE_2 +
+    //         USDT_STAGE_1 +
+    //         USDT_STAGE_3 +
+    //         USDT_STAGE_4,
+    //     );
+    //     setProgress((collected / usdtPerStage) * 100);
+    //   } else {
+    //     setStage('Stage 6');
+    //     setTokenPriceActually(0.14);
+    //     setCapPerStage(TOKEN_CAP_STAGE_6);
+    //     setUsdtPerStage(
+    //       USDT_STAGE_2 + USDT_STAGE_1 + USDT_STAGE_3 + USDT_STAGE_4 + USDT_STAGE_5 + USDT_STAGE_6,
+    //     );
+    //     setCollected(
+    //       (tokenSold -
+    //         TOKEN_CAP_STAGE_1 -
+    //         TOKEN_CAP_STAGE_2 -
+    //         TOKEN_CAP_STAGE_3 -
+    //         TOKEN_CAP_STAGE_4 -
+    //         TOKEN_CAP_STAGE_5) *
+    //         tokenPriceActually +
+    //         USDT_STAGE_2 +
+    //         USDT_STAGE_1 +
+    //         USDT_STAGE_3 +
+    //         USDT_STAGE_4 +
+    //         USDT_STAGE_5,
+    //     );
+    //     setProgress((collected / usdtPerStage) * 100);
+    //   }
+    // };
     // const getStage = async () => {
     //   let accumulatedUsdt = 0;
     //   let accumulatedToken = 0
 
-    //   for (let i = 0; i < stages.length; i++) {
-    //     const { tokens, price, usdt } = stages[i];
-
-    //     if (tokenSold < accumulatedToken + token) {
-    //       const stageName = `Stage ${i + 1}`;
-    //       const tokensSoldInStage = tokenSold - accumulatedToken;
-
-    //       setStage(stageName);
-    //       setTokenPriceActually(price);
-    //       setCapPerStage(tokens);
-    //       setUsdtPerStage(accumulatedUsdt + usdt);
-    //       setCollected(tokensSoldInStage * price + accumulatedUsdt);
-
-    //       const progressBase = collected - accumulatedUsdt;
-    //       const progressMax = usdtPerStage - accumulatedUsdt;
-    //       setProgress((progressBase / progressMax) * 100);
-
-    //       break;
-    //     }
-    //     accumulatedUsdt += usdt;
-    //     accumulatedToken += tokens
-    //   }
-    // };
-
     fetchData();
-    getStage();
-  }, [capPerStage, collected, tokenPriceActually, tokenSold, token]);
+    getStage2(tokenSold);
+  }, [collected, setLoading, tokenPriceActually, usdtPerStage, tokenSold]);
 
   useEffect(() => {
     if (successful || errorTransaction) {
@@ -458,26 +445,19 @@ export const BuyWindow = () => {
         <h1>{stage}</h1>
       </div>
       <p>1 $FLFI = ${tokenPriceActually} </p>
-      <p>
-        Price next stage = $
-        {tokenSold < 16137500
-          ? (tokenPriceActually + 0.01).toFixed(2)
-          : (tokenPriceActually + 0.02).toFixed(2)}
-      </p>
+      {tokenPriceNextStage ? <p>Price next stage = ${tokenPriceNextStage}</p> : null}
 
       <div style={{ display: 'flex' }}>
         <p style={{ marginTop: '15px', fontSize: '20px', display: 'inline' }}>
           <span style={{ fontSize: '20px' }}>Your holdings:&nbsp;</span>
         </p>
-        <p style={{ marginTop: '15px', fontSize: '20px', display: 'inline' }}>
-          {tokenHoldings}
-        </p>
+        <p style={{ marginTop: '15px', fontSize: '20px', display: 'inline' }}>{tokenHoldings}</p>
       </div>
 
       <Progress progress={progress.toFixed(2)} />
       <p>
-        Raised USD : ${collected.toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} / $
-        {usdtPerStage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+        Raised USD : ${collected?.toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} / $
+        {usdtPerStage?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
       </p>
 
       <div className={style.button_group}>

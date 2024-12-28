@@ -14,7 +14,7 @@ export const HowToBuy = () => {
     <>
       <Navbar navLink={buttonContent} />
       <div className={style.HowToBuy}>
-        <h1 className={style.header}>How to Buy Flary Presale</h1>
+        <h1 className={style.header}>How to Buy $FLFI</h1>
         <div className={style.content_wrapper}>
           {selectedTabId === 1 ? (
             <>
