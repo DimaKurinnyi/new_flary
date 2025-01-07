@@ -12,7 +12,7 @@ export const TOKEN_USDC = 'USDC';
 export const stagesList = [
   { stage: 'Stage1', fullTokenCap: 4285714, price: 0.07, usdCap: 300000, fullCap: 300000, tokenCap:4285714 },
   { stage: 'Stage2', fullTokenCap: 4910714, price: 0.08, usdCap: 50000, fullCap: 350000, tokenCap:625000 },
-  { stage: 'Stage3', fullTokenCap: 5754088, price: 0.09, usdCap: 70000, fullCap: 420000, tokenCap:843374 },
+  { stage: 'Stage3', fullTokenCap: 5754088, price: 0.083, usdCap: 70000, fullCap: 420000, tokenCap:843374 },
   { stage: 'Stage4', fullTokenCap: 6730832, price: 0.086, usdCap: 84000, fullCap: 504000, tokenCap:976744 },
   { stage: 'Stage5', fullTokenCap: 7850832, price: 0.09, usdCap: 100800, fullCap: 604800, tokenCap:1120000 },
   { stage: 'Stage6', fullTokenCap: 9151477, price: 0.093, usdCap: 120960, fullCap: 725760, tokenCap:1300645 },
