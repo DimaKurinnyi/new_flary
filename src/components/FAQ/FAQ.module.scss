@@ -1,8 +1,25 @@
-.FAQ{
+.FAQ {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   margin-bottom: 25px;
+  font-size: 13px;
+  h3 {
+    font-size: 25px;
+    background-image: linear-gradient(90deg, #ffa957, #ffd975);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+
+    line-height: 120%;
+    margin-bottom: 15px;
+  }
+  p {
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 400;
+  }
 }
 
 .description {
@@ -12,7 +29,11 @@
   opacity: 0.9;
 }
 @media (max-width: 768px) {
-  .FAQ{
-    margin-bottom:10px
+  .FAQ {
+    margin-bottom: 10px;
+    align-items: center;
+    p {
+      margin-bottom: 0;
+    }
   }
 }

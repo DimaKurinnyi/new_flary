@@ -1,6 +1,5 @@
-;
 import { Acordion } from '../Acordion/Acordion';
-import style from './FAQ.module.scss'
+import style from './FAQ.module.scss';
 
 export const FAQ = () => {
   const list = [
@@ -26,27 +25,33 @@ export const FAQ = () => {
     },
     {
       title: 'Where can I learn about the project’s development plans?',
-      content: (<>
-        You can learn about Flary Finance’s development plans by visiting our documentation on GitBook, where you’ll find the roadmap and detailed project information.   
-        <a
-          href="https://flary-finance.gitbook.io/flary-finance/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: '#ffa957', textDecoration: 'underline' }}
-        >
-          Flary Finance GitBook
-        </a>
-      </>),
-    },
-    {title:'I have discovered that my wallet has been compromised/hacked. What steps should I take?',
       content: (
         <>
-          If you suspect that your wallet associated with Flary Finance has been compromised, it’s crucial to act quickly to secure your assets. Follow these steps to protect yourself:
+          You can learn about Flary Finance’s development plans by visiting our documentation on
+          GitBook, where you’ll find the roadmap and detailed project information.
+          <a
+            href="https://flary-finance.gitbook.io/flary-finance/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: '#ffa957', textDecoration: 'underline' }}>
+            Flary Finance GitBook
+          </a>
+        </>
+      ),
+    },
+    {
+      title:
+        'I have discovered that my wallet has been compromised/hacked. What steps should I take?',
+      content: (
+        <>
+          If you suspect that your wallet associated with Flary Finance has been compromised, it’s
+          crucial to act quickly to secure your assets. Follow these steps to protect yourself:
           <br />
           <br />
           <strong>1. Never Share Your Seed Phrase or Private Key</strong>
           <br />
-          Under no circumstances should you share your Seed Phrase or Private Key with anyone. These are highly sensitive and must be kept secure at all times.
+          Under no circumstances should you share your Seed Phrase or Private Key with anyone. These
+          are highly sensitive and must be kept secure at all times.
           <br />
           <br />
           <strong>2. Contact Flary Finance Support</strong>
@@ -56,33 +61,38 @@ export const FAQ = () => {
             href="https://flary.finance/contact"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: '#ffa957', textDecoration: 'underline' }}
-          >
+            style={{ color: '#ffa957', textDecoration: 'underline' }}>
             https://flary.finance/contact
-          </a> <br />
+          </a>{' '}
+          <br />
           to report the issue and get guidance on the necessary steps to take.
           <br />
           <br />
           <strong>3. Important Reminder</strong>
           <br />
-          While we can provide assistance in securing your <strong>$FLFI</strong> tokens in the event of wallet compromise or hacking, please note that{' '}
-          <strong>we cannot recover lost funds</strong>. Ensuring the security of your wallet is your responsibility, and we urge you to take proactive measures to protect your assets.
+          While we can provide assistance in securing your <strong>$FLFI</strong> tokens in the
+          event of wallet compromise or hacking, please note that{' '}
+          <strong>we cannot recover lost funds</strong>. Ensuring the security of your wallet is
+          your responsibility, and we urge you to take proactive measures to protect your assets.
           <br />
           <br />
           <strong>4. Stay Alert for Scammers</strong>
           <br />
-          Flary Finance will <strong>never ask for your private details</strong>, such as your Seed Phrase or Private Key. Be vigilant against scams and always verify the authenticity of the support or individuals you are communicating with.
+          Flary Finance will <strong>never ask for your private details</strong>, such as your Seed
+          Phrase or Private Key. Be vigilant against scams and always verify the authenticity of the
+          support or individuals you are communicating with.
           <br />
           <br />
           Your security is our priority, and we’re here to assist you in safeguarding your assets.
         </>
       ),
-    }
+    },
   ];
   return (
     <div className={style.FAQ}>
-        
-        
+      <h3>FAQ</h3>
+
+      <p className={style.description}>Got Questions? We've Got Answers!</p>
       <Acordion list={list} />
     </div>
   );

@@ -1,54 +1,78 @@
-.ContactForm{
-    overflow: hidden;
-    width: 55%;
-    display: flex;
-    flex-direction: column;
-     gap: 35px;
+.Contact {
+  h3 {
+    font-size: 25px;
+    background-image: linear-gradient(90deg, #ffa957, #ffd975);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
 
+    line-height: 120%;
+    margin-bottom: 15px;
+  }
+  p {
+    margin-top: 34px;
+    opacity: 0.9;
+    margin-bottom: 40px;
+    font-size: 15px;
+    font-weight: 400;
+  }
 }
-.entreated{
-    position: relative;
-    height: 60px;
-    line-height: 60px;
+.ContactForm {
+  overflow: hidden;
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
 }
-input, textarea{
-    width: 100%;
-    position: absolute;
-    outline: none;
-    font-size: 20px;
-    padding:0 30px;
-    line-height: 60px;
-    border-radius: 15px;
-    border: 2px solid #ffa957;
-    background:transparent ;
-    transition: 0.1s ease;
-    z-index: 9;
-    color: #ffa957;
-    
+.entreated {
+  position: relative;
+  height: 60px;
+  line-height: 60px;
 }
-.labelLine{
-    position: absolute;
-    font-size: 20px;
-    color: white;
-    padding: 0 25px;
-    margin:0 20px ;
-    transition: 0.2s ease;
-    background: var(--color-bg);
+input,
+textarea {
+  width: 100%;
+  position: absolute;
+  outline: none;
+  font-size: 20px;
+  padding: 0 30px;
+  line-height: 60px;
+  border-radius: 15px;
+  border: 2px solid #ffa957;
+  background: transparent;
+  transition: 0.1s ease;
+  z-index: 9;
+  color: #ffa957;
 }
-input:focus,input:valid,textarea:focus,textarea:valid{
-    color: white;
-    border: 2px solid #ffd975
+.labelLine {
+  position: absolute;
+  font-size: 20px;
+  color: white;
+  padding: 0 25px;
+  margin: 0 20px;
+  transition: 0.2s ease;
+  background: var(--color-bg);
 }
-input:focus + .labelLine,input:valid + .labelLine,textarea + .labelLine,textarea + .label{
-    color: #ffd975;
-    height: 30px;
-    line-height: 30px;
-    transform: translate(-15px,-16px) scale(0.85);
-     z-index: 9;
+input:focus,
+input:valid,
+textarea:focus,
+textarea:valid {
+  color: white;
+  border: 2px solid #ffd975;
+}
+input:focus + .labelLine,
+input:valid + .labelLine,
+textarea + .labelLine,
+textarea + .label {
+  color: #ffd975;
+  height: 30px;
+  line-height: 30px;
+  transform: translate(-15px, -16px) scale(0.85);
+  z-index: 9;
 }
 button {
-    
-    margin-top: 60px;
+  margin-top: 60px;
   background: linear-gradient(90deg, #ffa957, #ffd975);
   font-size: 18px;
   color: #000;
@@ -64,11 +88,16 @@ button {
   }
 }
 @media (max-width: 768px) {
-    .ContactForm{
-        width: 100%;
-    }
-    button{
-        width: 100%;
+  .Contact {
+    text-align: center;
+    p {
+      margin-bottom: 10px;
     }
   }
-  
+  .ContactForm {
+    width: 100%;
+  }
+  button {
+    width: 100%;
+  }
+}

@@ -1,5 +1,5 @@
-import style from './Contact.module.scss'
-import { ContactForm, ContactInfo, Navbar } from '../../components'
+import { ContactForm, ContactInfo, FAQ, Navbar } from '../../components';
+import style from './Contact.module.scss';
 
 export const Contact = () => {
   const buttonContent = [
@@ -12,10 +12,11 @@ export const Contact = () => {
       <div className={style.Contact}>
         <h1 className={style.header}>Contact Us</h1>
         <div className={style.content}>
-          <ContactInfo />
+          <FAQ />
           <ContactForm />
         </div>
+        <ContactInfo />
       </div>
     </>
-  )
-}
+  );
+};

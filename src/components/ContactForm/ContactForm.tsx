@@ -1,6 +1,6 @@
+import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
-import emailjs from '@emailjs/browser';
 import style from './ContactForm.module.scss';
 
 export const ContactForm = () => {
@@ -11,11 +11,11 @@ export const ContactForm = () => {
 
     emailjs
       .sendForm(
-        "service_uhw8slr",
-        "template_5omh1yw",
+        'service_uhw8slr',
+        'template_5omh1yw',
         //@ts-ignore
         form.current,
-        "gaWz-pkJdZjnKYvxA",
+        'gaWz-pkJdZjnKYvxA',
       )
       .then(
         (result) => {
@@ -39,33 +39,49 @@ export const ContactForm = () => {
     },
   };
   return (
-    <motion.form
-      //@ts-ignore
-      ref={form}
-      onSubmit={sendEmail}
-      className={style.ContactForm}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}>
-      <motion.div
-        className={style.entreated}
-        variants={animation}
-        transition={{ duration: '1', delay: 0.25 }}>
-        <input type="text" required name="name" />
-        <div className={style.labelLine}>Enter your name</div>
-      </motion.div>
-      <motion.div className={style.entreated} variants={animation}
-        transition={{ duration: '1', delay: 0.5 }}>
-        <input type="email" required name="email" />
-        <div className={style.labelLine}>Enter your email</div>
-      </motion.div>
-      <motion.div className={style.entreated} variants={animation}
-        transition={{ duration: '1', delay: 0.75 }}>
-        <textarea rows={2} required name="message_new" />
-        <div className={style.labelLine}>Enter your message...</div>
-      </motion.div>
-      <motion.button type="submit" variants={animation}
-        transition={{ duration: '1', delay: 0.75 }}> Send message</motion.button>
-    </motion.form>
+    <>
+      <motion.form
+        //@ts-ignore
+        ref={form}
+        onSubmit={sendEmail}
+        className={style.ContactForm}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}>
+        <div className={style.Contact}>
+          <h3>Contact form</h3>
+
+          <p className={style.description}>If you have more questions? Write to us!</p>
+        </div>
+        <motion.div
+          className={style.entreated}
+          variants={animation}
+          transition={{ duration: '1', delay: 0.25 }}>
+          <input type="text" required name="name" />
+          <div className={style.labelLine}>Enter your name</div>
+        </motion.div>
+        <motion.div
+          className={style.entreated}
+          variants={animation}
+          transition={{ duration: '1', delay: 0.5 }}>
+          <input type="email" required name="email" />
+          <div className={style.labelLine}>Enter your email</div>
+        </motion.div>
+        <motion.div
+          className={style.entreated}
+          variants={animation}
+          transition={{ duration: '1', delay: 0.75 }}>
+          <textarea rows={2} required name="message_new" />
+          <div className={style.labelLine}>Enter your message...</div>
+        </motion.div>
+        <motion.button
+          type="submit"
+          variants={animation}
+          transition={{ duration: '1', delay: 0.75 }}>
+          {' '}
+          Send message
+        </motion.button>
+      </motion.form>
+    </>
   );
 };
