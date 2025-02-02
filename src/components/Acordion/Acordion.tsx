@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import style from './Acordion.module.scss';
 
@@ -9,20 +10,35 @@ interface AcordionProps {
 
 export const Acordion = ({ list }: AcordionProps) => {
   const [openId, setOpenId] = useState<number | null>(null);
+  const animation = {
+    hidden: {
+      x: -75,
+      opacity: 0,
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+    },
+  };
 
-  
   return (
-    <ul className={style.acordion}>
+    <motion.ul
+      className={style.acordion}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}>
       {list.map((item, id) => (
-        <AcordionItems
-          key={id}
-          item={item}
-          isOpen={openId === id}
-          onClick={() => 
-            (id === openId ? setOpenId(null) : setOpenId(id))
-          }
-        />
+        <>
+          <AcordionItems
+            key={id}
+            id={id}
+            item={item}
+            animation={animation}
+            isOpen={openId === id}
+            onClick={() => (id === openId ? setOpenId(null) : setOpenId(id))}
+          />
+        </>
       ))}
-    </ul>
+    </motion.ul>
   );
 };

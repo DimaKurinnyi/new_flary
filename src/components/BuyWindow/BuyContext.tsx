@@ -35,7 +35,7 @@ export const BuyProvider = ({ children }) => {
 
     const [inputAmountInUsd, setInputAmountInUsd] = useState(0);
 
-    const [successful, setSuccessful] = useState(false);
+    const [successful, setSuccessful] = useState(false);    
 
     const [solBalance, setSolBalance] = useState(0);
     const [solBalanceFiat, setSolBalanceFiat] = useState(0);

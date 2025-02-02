@@ -10,11 +10,11 @@ import { PiTelegramLogoBold } from 'react-icons/pi';
 export const ContactInfo = () => {
   const animation = {
     hidden: {
-      x: -75,
+      y: 75,
       opacity: 0,
     },
     visible: {
-      x: 0,
+      y: 0,
       opacity: 1,
 
     },
@@ -28,7 +28,7 @@ export const ContactInfo = () => {
       <motion.div
         className={style.contentBlockWrap}
         variants={animation}
-        transition={{ duration: '1', delay: 0.25 }}>
+        transition={{ duration: '1' }}>
         <div className={style.contentBloc}>
           <MdOutlineEmail size={20} />
           <p>Email</p>
@@ -43,7 +43,7 @@ export const ContactInfo = () => {
         </div>
       </motion.div>
       <motion.div className={style.contentBlockWrap} variants={animation}
-        transition={{ duration: '1', delay: 0.5 }}>
+        transition={{ duration: '1' }}>
         <div className={style.contentBloc}>
           <IoShareSocialOutline size={20} />
           <p>Socials</p>

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import style from './Acordion.module.scss';
@@ -6,12 +7,17 @@ interface ItemProps {
 
   isOpen: boolean;
   onClick: () => void;
+  animation: { [key: string]: { x: number; opacity: number } };
+  id:number
 }
 
-export const AcordionItems = ({ item, isOpen, onClick }: ItemProps) => {
+export const AcordionItems = ({ item, isOpen, onClick, animation,id }: ItemProps) => {
   const itemRef = useRef<HTMLDivElement | null>(null);
   return (
-    <li className={style.acordion_item}>
+    <motion.li
+      className={style.acordion_item}
+      variants={animation}
+      transition={{ duration: '1', delay: 0.25*id }}>
       <div className={style.acordion_header} onClick={() => onClick()}>
         <h2>{item.title}</h2>
         <span>
@@ -32,6 +38,6 @@ export const AcordionItems = ({ item, isOpen, onClick }: ItemProps) => {
           {item.content}
         </div>
       </div>
-    </li>
+    </motion.li>
   );
 };
