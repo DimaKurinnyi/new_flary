@@ -151,7 +151,7 @@ export const BuyWindow = () => {
 
       setCollected(
         //@ts-ignore
-        (tokenSold - sumTokenPerIndex) * tokenPriceActually + stagesList[index - 1].fullCap,
+        (tokenSold - sumTokenPerIndex) * tokenPriceActually + stagesList[index - 1].fullCap +2,
       );
       //@ts-ignore
       setProgress((collected / usdtPerStage) * 100);

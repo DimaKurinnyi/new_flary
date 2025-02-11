@@ -26,7 +26,7 @@ export const MakeAPurchaseButton = ({
   const { inputAmountInUsd } = useBuy();
 
   return (
-    <div
+    <button
       className={style.pay_button}
       onClick={onClick}
       style={
@@ -39,6 +39,6 @@ export const MakeAPurchaseButton = ({
           : { opacity: '1' }
       }>
       {inputAmountInUsd < 50 ? 'Minimum purchase is $50' : 'Buy FLFI'}
-    </div>
+    </button>
   )
 };

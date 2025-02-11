@@ -58,6 +58,7 @@ function App() {
 
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/utm1" element={<Home />}></Route>
                 <Route path="/how-to-buy" element={<HowToBuy />} />
                 <Route path="/giveaway" element={<Giveaway />} />
                 <Route path="/contact" element={<Contact />} />
