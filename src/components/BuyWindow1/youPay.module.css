@@ -1,0 +1,76 @@
+.root {
+    @apply w-full;
+}
+
+.section {
+    @apply bg-[#141327];
+    @apply rounded-[15px];
+    @apply pt-[15px] px-[15px];
+    @apply w-full;
+}
+
+.title {
+    @apply text-[12px] font-semibold;
+    @apply ml-[15px] mb-[5px];
+    color: var(--color-text-yellow);
+}
+
+.input {
+    @apply flex justify-between items-center;
+}
+
+.input input {
+    border: none;
+    z-index: 0;
+    line-height: 55px;
+    position: relative;
+
+}
+
+.input input[type='number']::-webkit-inner-spin-button,
+.input input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.inputMaxButton {
+    @apply text-[12px];
+    @apply p-[2px];
+    @apply bg-transparent;
+    @apply cursor-pointer;
+    @apply rounded-[4px];
+    @apply bg-[#ff5748];
+}
+
+.placeholder {
+    @apply flex w-full items-center justify-between;
+    @apply border-[#ffa957] border-solid border;
+    @apply font-semibold text-white text-[16px];
+    @apply h-[52px] rounded-[10px] px-[15px];
+}
+
+.placeholderContent {
+    @apply flex items-center gap-[10px];
+}
+
+.placeholderIcon {
+    @apply block;
+    @apply w-[30px] h-[30px]
+}
+
+.placeholderIcon svg,
+.placeholderIcon png {
+    @apply w-full h-full;
+}
+
+.token {
+    @apply flex items-center gap-[10px];
+}
+
+.tokenIcon {
+    @apply block h-[30px] w-[30px];
+}
+
+.tokenIcon svg {
+    @apply w-full h-full;
+}

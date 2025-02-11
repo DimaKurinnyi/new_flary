@@ -1,0 +1,21 @@
+.ErrorTransaction {
+  border: 1px solid #fff;
+  background:rgba(255, 0, 0, 0.85);
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  padding: 15px 20px;
+  z-index: 100;
+  transition: all 0.3s ease-in-out;
+}
+.wrapper {
+    display: flex;align-items: center;
+    gap: 15px;
+    color:#ffffffc5
+
+}
+.errorDescription{
+    size: 14px;
+    font-weight:400;
+}

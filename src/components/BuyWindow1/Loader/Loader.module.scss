@@ -1,0 +1,22 @@
+.Loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px ;
+}
+.spin{
+    animation: spin 1s linear infinite;
+    border-radius: 9999px;
+    height:60px;
+    width: 60px;
+    border-bottom: 2px solid var(--color-text-darkYellow);
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+}

@@ -1,0 +1,7 @@
+.icon {
+  @apply h-[30px] w-[30px];
+}
+
+.icon svg {
+  @apply w-full h-full;
+}
