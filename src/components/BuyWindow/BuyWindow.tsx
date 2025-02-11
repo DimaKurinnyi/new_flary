@@ -1,6 +1,7 @@
 import {createElement} from 'react';
 import style from './BuyWindow.module.scss';
 import {Progress} from './Progress/Progress';
+import "../../index.css";
 
 import BNB_old_logo from '../../assets/bnb logo.webp';
 import ETH from '../../assets/ETH.svg?react';
@@ -25,18 +26,20 @@ import classes from "./buyWindow.module.css";
 import youPayClasses from "./youPay.module.css";
 import {networks, TokenIcons} from "@/components/BuyWindow/data";
 import useBuyWindow from "@/components/BuyWindow/useBuyWindow";
+import {ChevronDown} from "lucide-react";
 
 export const BuyWindow = () => {
   const {
     network,
     loading,
     tokenValues,
-    tokenSold,
+    // tokenSold,
     stage,
     usdtPerStage,
     collected,
     progress,
     tokenPriceActually,
+    tokenPriceNextStage,
     tokenHoldings,
     tokensToAmount,
     successful,
@@ -52,7 +55,7 @@ export const BuyWindow = () => {
 
   return (
     <div className={style.BuyWindow}>
-      <ErrorTransaction />
+      <ErrorTransaction/>
       {openPopupNetwork && (
         <PopupNetwork
           imgEth={ETH}
@@ -64,16 +67,11 @@ export const BuyWindow = () => {
         <h1>{stage}</h1>
       </div>
       <p>1 $FLFI = ${tokenPriceActually} </p>
-      <p>
-        Price next stage = $
-        {tokenSold < 16137500
-          ? (tokenPriceActually + 0.01).toFixed(2)
-          : (tokenPriceActually + 0.02).toFixed(2)}
-      </p>
+      <p>Price next stage = ${stage === 'Stage2' ? 0.09 : tokenPriceNextStage}</p>
 
       <div style={{display: 'flex'}}>
         <p style={{marginTop: '15px', fontSize: '20px', display: 'inline'}}>
-          <span style={{fontSize: '20px'}}>Your holdings:&nbsp;</span>
+          <span className="text-[20px] text-[#ffa957]">Your holdings:&nbsp;</span>
         </p>
         <p style={{marginTop: '15px', fontSize: '20px', display: 'inline'}}>
           {tokenHoldings}
@@ -82,11 +80,8 @@ export const BuyWindow = () => {
 
       <Progress progress={progress.toFixed(2)}/>
       <p>
-        Raised USD : $
-        {collected
-          .toFixed()
-          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
-        / ${usdtPerStage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+        Raised USD : ${collected?.toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} / $
+        {usdtPerStage?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
       </p>
 
       <div className={style.button_group}>
@@ -105,6 +100,7 @@ export const BuyWindow = () => {
                       {createElement(TokenIcons[item[1].value])}
                     </span>
                     {item[1].name}
+                    <ChevronDown className="ml-auto h-[30px] w-[30px] hidden"/>
                   </span>
                 </SelectItem>
               ))}

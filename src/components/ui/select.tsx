@@ -17,18 +17,18 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "border-[#ffa957] font-semibold border-solid h-[52px] flex text-white w-full items-center justify-between rounded-[10px] data-[state=open]:rounded-b-[0] border px-[15px] py-2 text-[16px] placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 [&>span]:flex-grow",
+      "bg-transparent border-[#ffa957] font-semibold border-solid h-[52px] flex text-white w-full items-center justify-between rounded-[10px] data-[state=open]:rounded-b-[0] border px-[15px] py-2 text-[16px] placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 [&>span]:flex-grow [&_svg]:block",
       className
     )}
     {...props}
   >
     {children}
-    <SelectPrimitive.Icon asChild>
-      <div className="flex gap-1 items-center">
-        <ChevronDown className="h-[30px] w-[30px]"/>
-        {/*{after}*/}
-      </div>
-    </SelectPrimitive.Icon>
+    {/*<SelectPrimitive.Icon asChild>*/}
+    {/*  <div className="flex gap-1 items-center">*/}
+    {/*    <ChevronDown className="h-[30px] w-[30px]"/>*/}
+    {/*    /!*{after}*!/*/}
+    {/*  </div>*/}
+    {/*</SelectPrimitive.Icon>*/}
   </SelectPrimitive.Trigger>
 ))
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName

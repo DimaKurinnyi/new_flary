@@ -22,6 +22,8 @@
 .input input {
     border: none;
     z-index: 0;
+    padding-left: 0;
+    padding-right: 10px;
     line-height: 55px;
     position: relative;
 

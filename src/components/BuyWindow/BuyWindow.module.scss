@@ -1,3 +1,13 @@
+.BuyWindow button {
+    font-family: inherit; /* 1 */
+    font-feature-settings: inherit; /* 1 */
+    font-variation-settings: inherit; /* 1 */
+    font-size: 100%; /* 1 */
+    line-height: inherit; /* 1 */
+    letter-spacing: inherit; /* 1 */
+    color: inherit; /* 1 */
+}
+
 .BuyWindow {
   overflow: hidden;
   //margin:25px;
@@ -10,8 +20,7 @@
   align-items: center;
 
   background: linear-gradient(4deg, rgb(24, 22, 22), rgb(0, 0, 0)) padding-box,
-    linear-gradient(rgb(99, 94, 94), #736c6c) border-box;
-
+  linear-gradient(rgb(99, 94, 94), #736c6c) border-box;
   // backdrop-filter: blur(35px);
   // -webkit-backdrop-filter: blur(15px);
   .bg {
@@ -28,24 +37,22 @@
     background-size: cover;
     margin-bottom: 10px;
   }
-
   h1 {
     width: fit-content;
     background: rgb(24, 22, 22, 0.7);
     border-radius: 15px;
     padding: 7px 15px;
     color: rgb(212, 209, 209);
+    font-size: 32px;
+    font-weight: 700;
   }
-
   p {
     font-weight: 600;
   }
-
   span {
     //color: var(--color-text-darkYellow);
   }
 }
-
 .BuyWindowBlur {
   width: 150px;
   height: 150px;
@@ -56,15 +63,13 @@
   top: 20%;
   filter: blur(90px);
 }
-
 .button_group {
   width: 90%;
   margin-top: 20px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-
+  gap: 35px;
   // align-items: center;
   .button {
     position: relative;
@@ -82,30 +87,25 @@
     }
   }
 }
-
 .balanceValue {
   font-weight: 300;
   font-size: 14px;
 }
-
 .down_button {
   display: flex;
   gap: 15px;
   justify-content: space-between;
   align-items: center;
-
   .button {
     min-width: 188px;
     min-height: 54px;
     margin: 15px 12px 0 12px;
   }
 }
-
 .max_input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   .max {
     margin-right: 12px;
     font-weight: 400;
@@ -129,7 +129,6 @@
     -webkit-appearance: none;
     margin: 0;
   }
-
   input {
     border: none;
     z-index: 0;
@@ -138,17 +137,14 @@
     position: relative;
   }
 }
-
 .button_tittle {
   display: flex;
   gap: 10px;
   align-items: center;
-
   span {
     font-size: 10px;
   }
 }
-
 .drop_network {
   width: 100.5%;
   z-index: 11;
@@ -161,7 +157,6 @@
   background: #000;
   overflow: hidden;
 }
-
 .drop_token {
   width: 101%;
   z-index: 11;
@@ -174,7 +169,6 @@
   background: #000;
   overflow: hidden;
 }
-
 .button_drop {
   display: flex;
   align-items: center;
@@ -183,23 +177,19 @@
   width: 100%;
   cursor: pointer;
   padding: 15px 10px 10px 15px;
-
   &:hover {
     background: #fff;
     color: #000;
   }
 }
-
 .button_drop_left {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
 .button_drop_right {
   text-align: end;
 }
-
 .labelLine {
   z-index: 1;
   top: -22px;
@@ -210,7 +200,6 @@
   padding: 0 10px;
   margin: 0 20px;
 }
-
 .pay_button {
   width: 90%;
   text-align: center;
@@ -222,12 +211,11 @@
   font-weight: 700;
   line-height: 26px;
   transition: 0.5s;
-
+  margin-top: 0;
   &:hover {
     filter: brightness(120%);
   }
 }
-
 .ConnectButton {
   font-weight: 700;
   line-height: 26px;
@@ -246,7 +234,6 @@
     }
   }
 }
-
 @media (max-width: 970px) {
   .inputs {
     width: auto;
@@ -260,21 +247,18 @@
     }
 
   }
-
   .down_button {
     display: flex;
     gap: 35px;
     flex-direction: column;
     align-items: center;
     width: 100%;
-
     .button {
 
       min-height: 54px;
       margin: 15px 12px 0 12px;
     }
   }
-
   .button_group {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -286,34 +270,10 @@
     //   width: 100%;
     // }
   }
-
   .inputs {
     display: block;
   }
 }
-
-@media (max-width: 440px) {}
-
-.connect_button {
-  margin: 0;
-}
-
-.wallet-adapter-dropdown {
-  margin: 100;
-  margin-top: 0;
-}
-
-.wallet-adapter-button {
-  margin: 0;
-  margin-top: 0;
-}
-
-.wallet-adapter-button-trigger {
-  margin: 0;
-  margin-top: 0;
-}
-
-.WalletMultiButton {
-  margin: 0;
-  background: 'transparent'
+@media (max-width: 390px) {
+  .pay_button {font-size: 14px;}
 }

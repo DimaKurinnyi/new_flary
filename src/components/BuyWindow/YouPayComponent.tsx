@@ -9,6 +9,7 @@ import classes from "./youPay.module.css";
 import {networks, TokenIcons} from "@/components/BuyWindow/data";
 import {useAccount} from "wagmi";
 import useStore from "@/store";
+import {ChevronDown} from "lucide-react";
 
 export const YouPayComponent = (
   // @ts-ignore
@@ -49,11 +50,12 @@ export const YouPayComponent = (
                     {createElement(TokenIcons[item])}
                   </span>
                   {item}
-                  <span className="ml-auto h-full flex flex-col justify-between items-end text-[12px]">
-                    <span>
+                  <ChevronDown className="h-[30px] w-[30px] hidden"/>
+                  <span className="ml-auto h-full flex flex-col justify-between items-end text-[14px]">
+                    <span className="font-semibold">
                       {tokenValues[network][item].balance >= 0.001 ? tokenValues[network][item].balance.toFixed(3) : "0"}
                     </span>
-                    <span>
+                    <span className="font-thin color-gray">
                       ${tokenValues[network][item].usd}
                     </span>
                   </span>

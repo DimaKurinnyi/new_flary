@@ -88,6 +88,7 @@ export const useBuyWindow = () => {
   const [collected, setCollected] = useState(0);
   const [progress, setProgress] = useState(0);
   const [tokenPriceActually, setTokenPriceActually] = useState(0);
+  const [tokenPriceNextStage, setTokenPriceNextStage] = useState(0);
   const [balanceValue, setBalanceValue] = useState(0);
   const [balanceValueFiat, setBalanceValueFiat] = useState(0);
   const [tokenPrice, setTokenPrice] = useState(0);
@@ -488,9 +489,10 @@ export const useBuyWindow = () => {
     const collected = (tokenSold + multipleTokenCapState) * stages[stageIndex].price + multipleUsdtState;
 
     setStage(`Stage ${stageIndex + 1}`);
+    setTokenPriceNextStage(stages[stageIndex + 1].price);
     setTokenPriceActually(stages[stageIndex].price);
-    setUsdtPerStage(totalUsdt);
-    setCollected(collected);
+    setUsdtPerStage(stages[stageIndex].fullCap);
+    setCollected(collected + 2);
     setProgress((collected / totalUsdt) * 100);
   }, [tokenSold]);
 
@@ -644,6 +646,7 @@ export const useBuyWindow = () => {
     errorTransaction,
     openPopupNetwork,
     handleChangeToken,
+    tokenPriceNextStage,
     setErrorTransaction,
     setMaxAcceptableValue,
     handleAmountChange,

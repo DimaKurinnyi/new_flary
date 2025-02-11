@@ -7,7 +7,6 @@ import App from './App';
 import Providers from './providers';
 import './styles/index.scss';
 import '@rainbow-me/rainbowkit/styles.css'
-import "./index.css"
 
 createRoot(document.getElementById('root')!).render(
   <Providers>
