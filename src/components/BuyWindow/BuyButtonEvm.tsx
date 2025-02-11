@@ -5,7 +5,6 @@ import { useAccount, useWriteContract, useReadContract, useBalance } from 'wagmi
 import { readContract, getBalance } from "@wagmi/core";
 import { useConnectModal } from '@rainbow-me/rainbowkit';
 import { NETWORK_ETHEREUM, TOKEN_USDT } from './constants';
-import { useBuy } from './BuyContext';
 import { config } from '../../config';
 import { parseUnits } from 'viem';
 import { waitForTransactionReceipt } from '@wagmi/core';
@@ -14,6 +13,7 @@ import { FLARY_PRESALE_ABI } from './flary-contract-abi';
 import { ERC_20_ABI, USDT_ABI } from './erc-20-abi';
 import { parseEther } from 'ethers';
 import { MakeAPurchaseButton } from './BuyButton';
+import useStore from "@/store";
 
 const {
     ETH_CONTRACT_ADDRESS,
@@ -50,10 +50,7 @@ const ProcessPaymentButtonEvm = ({
     //@ts-ignore
     updateTokenHoldings
 }) => {
-    const {
-        token,
-        network,
-    } = useBuy();
+    const {token,network} = useStore();
 
     const [contractAddress, setContractAddress] = useState(null);
     const [usdtAddress, setUsdtAddress] = useState(null);
@@ -92,7 +89,7 @@ const BuyWithNativeButton = ({
         setErrorTransaction,
         setSuccessful,
         tokensToAmount
-    } = useBuy();
+    } = useStore();
 
     const { address } = useAccount();
 
@@ -190,13 +187,13 @@ const BuyWithUsdtButton = ({
 }) => {
     const {
         network,
-        setErrorTransaction,
-        setError,
+        tokensToAmount,
         tokensFromAmount,
-        setLoading,
         setSuccessful,
-        tokensToAmount
-    } = useBuy();
+        setLoading,
+        setErrorTransaction,
+        setError
+    } = useStore();
 
     const { address } = useAccount();
 

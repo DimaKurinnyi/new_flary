@@ -1,8 +1,9 @@
 import style from './Header.module.scss';
 import { Animate } from './Animate.js';
 import { HeaderNav } from '../HeaderNav/HeaderNav.js';
-import { BuyWindow } from '../BuyWindow/BuyWindow.js';
-import { BuyProvider } from '../BuyWindow/BuyContext.js';
+import { BuyWindow } from '@/components/BuyWindow/BuyWindow';
+// import { BuyProvider } from '@/components/BuyWindowOld/BuyContext.js';
+
 
 export const Header = () => {
   return (
@@ -26,9 +27,9 @@ export const Header = () => {
       </div>
 
       <div className={style.img}>
-        <BuyProvider>
+        {/*<BuyProvider>*/}
           <BuyWindow />
-        </BuyProvider>
+        {/*</BuyProvider>*/}
       </div>
     </div>
   );

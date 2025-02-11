@@ -1,11 +1,6 @@
 import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md';
 import style from './PopupNetwork.module.scss';
 
-import {
-  NETWORK_BSC,
-  NETWORK_ETHEREUM,
-} from '../constants';
-
 export const PopupNetwork = ({
   //@ts-ignore
   imgEth,
@@ -13,6 +8,10 @@ export const PopupNetwork = ({
   imgBNB,
   //@ts-ignore
   handlerChangeNetwork,
+  //@ts-ignore
+  NETWORK_ETHEREUM,
+  //@ts-ignore
+  NETWORK_BSC,
 }) => {
   return (
     <div className={style.modal}>

@@ -1,12 +1,13 @@
 import style from './BuyWindow.module.scss';
 import { NETWORK_SOLANA } from './constants';
+import { useBuy } from './BuyContext';
 import { BuyButtonSolana } from './BuyButtonSolana';
 import { BuyButtonEvm } from './BuyButtonEvm';
-import useStore from "@/store";
 
 //@ts-ignore
 export const BuyButton = ({ updateTokenHoldings }) => {
-  const {network} = useStore();
+  const { network } = useBuy();
+
   return (
     <>
       {
@@ -22,10 +23,10 @@ export const MakeAPurchaseButton = ({
   //@ts-ignore
   onClick
 }) => {
-  const {inputAmountInUsd} = useStore();
+  const { inputAmountInUsd } = useBuy();
 
   return (
-    <div
+    <button
       className={style.pay_button}
       onClick={onClick}
       style={
@@ -38,6 +39,6 @@ export const MakeAPurchaseButton = ({
           : { opacity: '1' }
       }>
       {inputAmountInUsd < 50 ? 'Minimum purchase is $50' : 'Buy FLFI'}
-    </div>
+    </button>
   )
 };

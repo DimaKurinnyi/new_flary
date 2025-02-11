@@ -1,16 +1,12 @@
 import { BiSolidError } from 'react-icons/bi';
 import { IoMdClose } from 'react-icons/io';
 import style from './ErrorTransaction.module.scss';
-import useStore from "@/store";
 
 //@ts-ignore
-export const ErrorTransaction = () => {
-  const {setErrorTransaction, errorTransaction} = useStore()
-
+export const ErrorTransaction = ({ setErrorTransaction, errorTransaction }) => {
   const handlerCloseError = () => {
     setErrorTransaction(false);
   };
-
   return (
     <div
       className={style.ErrorTransaction}
