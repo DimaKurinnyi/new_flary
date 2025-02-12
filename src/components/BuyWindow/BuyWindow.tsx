@@ -151,7 +151,7 @@ export const BuyWindow = () => {
 
       setCollected(
         //@ts-ignore
-        (tokenSold - sumTokenPerIndex) * tokenPriceActually + stagesList[index - 1].fullCap +2,
+        (tokenSold - sumTokenPerIndex) * tokenPriceActually + stagesList[index - 1].fullCap,
       );
       //@ts-ignore
       setProgress((collected / usdtPerStage) * 100);
@@ -445,9 +445,7 @@ export const BuyWindow = () => {
         <h1>{stage}</h1>
       </div>
       <p>1 $FLFI = ${tokenPriceActually} </p>
-      {tokenPriceNextStage ? (
-        <p>Price next stage = ${stage === 'Stage2' ? 0.09 : tokenPriceNextStage}</p>
-      ) : null}
+      {tokenPriceNextStage ? <p>Price next stage = ${tokenPriceNextStage}</p> : null}
 
       <div style={{ display: 'flex' }}>
         <p style={{ marginTop: '15px', fontSize: '20px', display: 'inline' }}>
